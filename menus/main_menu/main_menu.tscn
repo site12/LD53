@@ -39,7 +39,7 @@ size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/screen/menu/left"]
 layout_mode = 2
-text = "A Night In the West"
+text = "Westmogus"
 label_settings = SubResource("LabelSettings_cmv2w")
 vertical_alignment = 1
 
