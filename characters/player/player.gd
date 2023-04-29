@@ -33,6 +33,8 @@ func _ready():
 		%Camera3D.current = true
 	else:
 		%Camera3D.current = false
+	%id.visible = %Camera3D.current
+	%id.text = str(GameInfo.peer_id)
 
 func _process(_delta):
 	move_and_slide()

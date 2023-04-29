@@ -1,0 +1,139 @@
+[gd_scene load_steps=3 format=3 uid="uid://b317myro4801p"]
+
+[ext_resource type="Script" path="res://menus/splash.gd" id="1_y7lqa"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_cmv2w"]
+font_size = 45
+
+[node name="splash" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_y7lqa")
+
+[node name="screen" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="screen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = 28.0
+offset_right = 48.0
+offset_bottom = 54.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Click To Play"
+
+[node name="MarginContainer" type="MarginContainer" parent="screen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="screen" type="VBoxContainer" parent="screen/MarginContainer"]
+layout_mode = 2
+
+[node name="menu" type="HBoxContainer" parent="screen/MarginContainer/screen"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="left" type="VBoxContainer" parent="screen/MarginContainer/screen/menu"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="screen/MarginContainer/screen/menu/left"]
+layout_mode = 2
+text = "Westmogus"
+label_settings = SubResource("LabelSettings_cmv2w")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="server" type="HBoxContainer" parent="screen/MarginContainer/screen"]
+modulate = Color(1, 1, 1, 0.470588)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="screen/MarginContainer/screen/server"]
+layout_mode = 2
+text = "Server Address: "
+vertical_alignment = 2
+
+[node name="server_address" type="LineEdit" parent="screen/MarginContainer/screen/server"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 25)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+placeholder_text = "Server Address"
+
+[node name="spacer" type="Label" parent="screen/MarginContainer/screen/server"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+text = " "
+vertical_alignment = 2
+
+[node name="run_as_server" type="Button" parent="screen/MarginContainer/screen/server"]
+custom_minimum_size = Vector2(150, 25)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Run as Server"
+
+[node name="Button" type="Button" parent="screen"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="connecting" type="ColorRect" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.717647)
+
+[node name="Label" type="Label" parent="connecting"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Connecting to online Services..."
+
+[connection signal="text_changed" from="screen/MarginContainer/screen/server/server_address" to="." method="_on_server_address_text_changed"]
+[connection signal="button_up" from="screen/MarginContainer/screen/server/run_as_server" to="." method="_on_run_as_server_button_up" flags=18]
+[connection signal="pressed" from="screen/Button" to="." method="_on_button_pressed"]

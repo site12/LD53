@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dvoyqbhsuawrh"]
+[gd_scene load_steps=4 format=3 uid="uid://dvoyqbhsuawrh"]
 
+[ext_resource type="PackedScene" uid="uid://b317myro4801p" path="res://menus/splash.tscn" id="1_5ghyq"]
 [ext_resource type="PackedScene" uid="uid://b7vjvyh07s52j" path="res://menus/main_menu/main_menu.tscn" id="1_c7aox"]
 [ext_resource type="PackedScene" uid="uid://kfjql8yuaa27" path="res://networking/network_nodes/network_root.tscn" id="3_35g40"]
 
@@ -14,7 +15,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="splash" parent="ui_root" instance=ExtResource("1_5ghyq")]
+layout_mode = 1
+
 [node name="main_menu" parent="ui_root" instance=ExtResource("1_c7aox")]
+visible = false
 layout_mode = 1
 
 [node name="network_root" parent="." instance=ExtResource("3_35g40")]

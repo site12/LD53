@@ -1350,6 +1350,7 @@ properties/1/spawn = true
 properties/1/sync = true
 
 [node name="player" type="CharacterBody3D"]
+collision_layer = 2
 script = ExtResource("1_m3dv8")
 
 [node name="UI" type="Control" parent="."]
@@ -1372,16 +1373,14 @@ mouse_filter = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 
-[node name="Control" type="Control" parent="UI/MarginContainer"]
+[node name="id" type="Label" parent="UI/MarginContainer"]
+unique_name_in_owner = true
+z_index = 4
 layout_mode = 2
-
-[node name="Label" type="Label" parent="UI/MarginContainer/Control"]
-layout_mode = 2
-offset_right = 138.0
-offset_bottom = 26.0
-size_flags_horizontal = 0
+size_flags_horizontal = 4
 size_flags_vertical = 0
-text = "TEST OF CLEAN UI"
+text = "[player_id]"
+horizontal_alignment = 1
 
 [node name="game_viewport" type="SubViewportContainer" parent="UI"]
 texture_filter = 1

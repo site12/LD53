@@ -17,10 +17,6 @@ properties/2/sync = true
 [node name="session" type="Node3D"]
 script = ExtResource("1_r2lji")
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://characters/player/player.tscn")
-spawn_path = NodePath("../players")
-
 [node name="session_synchronizer" type="MultiplayerSynchronizer" parent="."]
 unique_name_in_owner = true
 replication_config = SubResource("SceneReplicationConfig_xqa7b")

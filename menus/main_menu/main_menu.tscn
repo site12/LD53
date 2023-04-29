@@ -41,6 +41,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 text = "Westmogus"
 label_settings = SubResource("LabelSettings_cmv2w")
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="spacer" type="Label" parent="MarginContainer/screen/menu/left"]
@@ -107,71 +108,7 @@ size_flags_vertical = 4
 mouse_default_cursor_shape = 2
 text = "QUIT"
 
-[node name="middle" type="VBoxContainer" parent="MarginContainer/screen/menu"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="right" type="VBoxContainer" parent="MarginContainer/screen/menu"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="server" type="HBoxContainer" parent="MarginContainer/screen"]
-modulate = Color(1, 1, 1, 0.470588)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/screen/server"]
-layout_mode = 2
-text = "Server Address: "
-vertical_alignment = 2
-
-[node name="server_address" type="LineEdit" parent="MarginContainer/screen/server"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(150, 25)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-placeholder_text = "Server Address"
-
-[node name="spacer" type="Label" parent="MarginContainer/screen/server"]
-custom_minimum_size = Vector2(600, 0)
-layout_mode = 2
-text = " "
-vertical_alignment = 2
-
-[node name="run_as_server" type="Button" parent="MarginContainer/screen/server"]
-custom_minimum_size = Vector2(150, 25)
-layout_mode = 2
-size_flags_horizontal = 8
-text = "Run as Server"
-
-[node name="connecting" type="ColorRect" parent="."]
-unique_name_in_owner = true
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.717647)
-
-[node name="Label" type="Label" parent="connecting"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Connecting to online Services..."
-
 [connection signal="text_changed" from="MarginContainer/screen/menu/left/playername" to="." method="_on_playername_text_changed"]
 [connection signal="button_up" from="MarginContainer/screen/menu/left/HOST" to="." method="_on_host_button_up"]
 [connection signal="button_up" from="MarginContainer/screen/menu/left/JOIN" to="." method="_on_join_button_up"]
 [connection signal="button_up" from="MarginContainer/screen/menu/left/QUIT" to="." method="_on_quit_button_up"]
-[connection signal="button_up" from="MarginContainer/screen/server/run_as_server" to="." method="_on_run_as_server_button_up"]
