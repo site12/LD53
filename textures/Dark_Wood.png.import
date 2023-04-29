@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpegh2jfv7ube"
-path.s3tc="res://.godot/imported/Dirt_13-128x128.png-9c32295b24d77836e7daf2454c8210a8.s3tc.ctex"
+uid="uid://dbst5bgplf3n7"
+path.s3tc="res://.godot/imported/Dark_Wood.png-98cca3447a8e8fddd523048bafec78f3.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/Dirt_13-128x128.png"
-dest_files=["res://.godot/imported/Dirt_13-128x128.png-9c32295b24d77836e7daf2454c8210a8.s3tc.ctex"]
+source_file="res://textures/Dark_Wood.png"
+dest_files=["res://.godot/imported/Dark_Wood.png-98cca3447a8e8fddd523048bafec78f3.s3tc.ctex"]
 
 [params]
 
