@@ -25,6 +25,7 @@ data = PackedVector3Array(0.7083, 0.625, -0.125, 0.7083, -0.625, -0.125, 0.9583,
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.08333, 0.625, 6)
 
 [node name="entity_1_geometry" type="MeshInstance3D" parent="."]
+layers = 3
 mesh = SubResource("ArrayMesh_3f7ho")
 
 [node name="entity_1_geometry_col" type="StaticBody3D" parent="."]

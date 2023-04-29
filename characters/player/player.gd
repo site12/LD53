@@ -33,8 +33,8 @@ func _ready():
 		%Camera3D.current = true
 	else:
 		%Camera3D.current = false
-	%id.visible = %Camera3D.current
-	%id.text = str(GameInfo.peer_id)
+	$UI/MarginContainer/Control.visible = %Camera3D.current
+	%id.text = str(GameInfo.peer_id)+ " "+GameInfo.get_player_name()
 
 func _process(_delta):
 	move_and_slide()
@@ -44,7 +44,32 @@ func _physics_process(delta):
 	handle_state()
 	if not network_authority:
 		return
+		
+	handle_locations()
 	handle_movement(delta)
+	
+
+func handle_locations():
+	#print($RayCast3D.get_collider().get_parent().name)
+	match $RayCast3D.get_collider().get_parent().name:
+		"church_main_building":
+			%location.text = "Church"
+		"hotel_main_bldg":
+			%location.text = "Hotel"
+		"train_station":
+			%location.text = "Train Station"
+		"saloon_main":
+			%location.text = "Saloon"
+		"water tower":
+			%location.text = "Water Tower"
+		"graveyard":
+			%location.text = "Graveyard"
+		"bank_main":
+			%location.text = "Bank"
+		"store_main":
+			%location.text = "Store"
+		"MeshInstance3D":
+			%location.text = ""
 	
 
 func handle_movement(delta):
@@ -61,7 +86,7 @@ func handle_movement(delta):
 		%charmesh.look_at(transform.origin + -velocity, Vector3.UP)
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir = Input.get_vector("left", "right", "forward", "backward")
+	var input_dir = Input.get_vector("left", "right", "forward", "backward").rotated(-deg_to_rad(45))
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
 		velocity.x = direction.x * SPEED
@@ -75,5 +100,4 @@ func handle_state():
 		animtree["parameters/playback"].travel("idle")
 	elif player_state == PlayerState.MOVING:
 		animtree["parameters/playback"].travel("jog")
-
 

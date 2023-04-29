@@ -1373,13 +1373,41 @@ mouse_filter = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 
-[node name="id" type="Label" parent="UI/MarginContainer"]
+[node name="Control" type="Control" parent="UI/MarginContainer"]
+layout_mode = 2
+
+[node name="id" type="Label" parent="UI/MarginContainer/Control"]
 unique_name_in_owner = true
 z_index = 4
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -40.5
+offset_right = 40.5
+offset_bottom = 26.0
+grow_horizontal = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "[player_id]"
+horizontal_alignment = 1
+
+[node name="location" type="Label" parent="UI/MarginContainer/Control" groups=["player"]]
+unique_name_in_owner = true
+z_index = 3
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -568.5
+offset_top = -75.0
+offset_right = 568.5
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "[LOCATION]"
 horizontal_alignment = 1
 
 [node name="game_viewport" type="SubViewportContainer" parent="UI"]
@@ -1398,6 +1426,8 @@ stretch_shrink = 3
 [node name="SubViewport" type="SubViewport" parent="UI/game_viewport"]
 transparent_bg = true
 handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
 canvas_item_default_texture_filter = 0
 size = Vector2i(384, 216)
 render_target_update_mode = 4
@@ -2577,3 +2607,7 @@ parameters/playback = SubResource("AnimationNodeStateMachinePlayback_po21u")
 unique_name_in_owner = true
 replication_config = SubResource("SceneReplicationConfig_5bd1c")
 public_visibility = false
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+collide_with_areas = true
