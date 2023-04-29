@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://d2558de6b7s06"
+path="res://.godot/imported/man.obj-e5bda8279cd9056ea79f49c3dd618912.mesh"
+
+[deps]
+
+files=["res://.godot/imported/man.obj-e5bda8279cd9056ea79f49c3dd618912.mesh"]
+
+source_file="res://characters/player/meshes and textures/man.obj"
+dest_files=["res://.godot/imported/man.obj-e5bda8279cd9056ea79f49c3dd618912.mesh", "res://.godot/imported/man.obj-e5bda8279cd9056ea79f49c3dd618912.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvoyqbhsuawrh"]
+
+[ext_resource type="PackedScene" uid="uid://b7vjvyh07s52j" path="res://menus/main_menu/main_menu.tscn" id="1_c7aox"]
+[ext_resource type="PackedScene" uid="uid://kfjql8yuaa27" path="res://networking/network_nodes/network_root.tscn" id="3_35g40"]
+
+[node name="game_root" type="Node"]
+
+[node name="ui_root" type="Control" parent="."]
+z_index = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="main_menu" parent="ui_root" instance=ExtResource("1_c7aox")]
+layout_mode = 1
+
+[node name="network_root" parent="." instance=ExtResource("3_35g40")]
+
+[node name="session_root" type="Node" parent="."]
