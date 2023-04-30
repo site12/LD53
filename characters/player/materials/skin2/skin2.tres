@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://ciyp1mlh25yck"]
+
+[ext_resource type="Texture2D" uid="uid://c6kdjpcbcj41k" path="res://characters/player/materials/skin2/skin2.png" id="1_g6bl3"]
+
+[resource]
+resource_name = "Material.001"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_g6bl3")
+metallic_specular = 0.0
+roughness = 0.0
+texture_filter = 0

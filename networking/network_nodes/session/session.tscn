@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bteod4mut7e2h"]
+[gd_scene load_steps=18 format=3 uid="uid://bteod4mut7e2h"]
 
 [ext_resource type="PackedScene" uid="uid://3xuh3lgkrcb7" path="res://maps/town/town.tscn" id="1_dt637"]
 [ext_resource type="Script" path="res://networking/network_nodes/session/session.gd" id="1_r2lji"]
@@ -14,6 +14,159 @@ properties/2/path = NodePath(".:players_info")
 properties/2/spawn = true
 properties/2/sync = true
 
+[sub_resource type="Gradient" id="Gradient_305af"]
+offsets = PackedFloat32Array(0.137427, 1)
+colors = PackedColorArray(0, 7.70092e-07, 0.714812, 1, 1, 1, 1, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_miynn"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_iw0fa"]
+color_ramp = SubResource("Gradient_305af")
+noise = SubResource("FastNoiseLite_miynn")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s452v"]
+transparency = 1
+albedo_texture = SubResource("NoiseTexture2D_iw0fa")
+
+[sub_resource type="BoxMesh" id="BoxMesh_8o0be"]
+material = SubResource("StandardMaterial3D_s452v")
+size = Vector3(1, 1, 0.1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ny6xf"]
+data = PackedVector3Array(-0.5, 0.5, 0.05, 0.5, 0.5, 0.05, -0.5, -0.5, 0.05, 0.5, 0.5, 0.05, 0.5, -0.5, 0.05, -0.5, -0.5, 0.05, 0.5, 0.5, -0.05, -0.5, 0.5, -0.05, 0.5, -0.5, -0.05, -0.5, 0.5, -0.05, -0.5, -0.5, -0.05, 0.5, -0.5, -0.05, 0.5, 0.5, 0.05, 0.5, 0.5, -0.05, 0.5, -0.5, 0.05, 0.5, 0.5, -0.05, 0.5, -0.5, -0.05, 0.5, -0.5, 0.05, -0.5, 0.5, -0.05, -0.5, 0.5, 0.05, -0.5, -0.5, -0.05, -0.5, 0.5, 0.05, -0.5, -0.5, 0.05, -0.5, -0.5, -0.05, 0.5, 0.5, 0.05, -0.5, 0.5, 0.05, 0.5, 0.5, -0.05, -0.5, 0.5, 0.05, -0.5, 0.5, -0.05, 0.5, 0.5, -0.05, -0.5, -0.5, 0.05, 0.5, -0.5, 0.05, -0.5, -0.5, -0.05, 0.5, -0.5, 0.05, 0.5, -0.5, -0.05, -0.5, -0.5, -0.05)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_1bl3a"]
+data = PackedVector3Array(-0.5, 0.5, 0.05, 0.5, 0.5, 0.05, -0.5, -0.5, 0.05, 0.5, 0.5, 0.05, 0.5, -0.5, 0.05, -0.5, -0.5, 0.05, 0.5, 0.5, -0.05, -0.5, 0.5, -0.05, 0.5, -0.5, -0.05, -0.5, 0.5, -0.05, -0.5, -0.5, -0.05, 0.5, -0.5, -0.05, 0.5, 0.5, 0.05, 0.5, 0.5, -0.05, 0.5, -0.5, 0.05, 0.5, 0.5, -0.05, 0.5, -0.5, -0.05, 0.5, -0.5, 0.05, -0.5, 0.5, -0.05, -0.5, 0.5, 0.05, -0.5, -0.5, -0.05, -0.5, 0.5, 0.05, -0.5, -0.5, 0.05, -0.5, -0.5, -0.05, 0.5, 0.5, 0.05, -0.5, 0.5, 0.05, 0.5, 0.5, -0.05, -0.5, 0.5, 0.05, -0.5, 0.5, -0.05, 0.5, 0.5, -0.05, -0.5, -0.5, 0.05, 0.5, -0.5, 0.05, -0.5, -0.5, -0.05, 0.5, -0.5, 0.05, 0.5, -0.5, -0.05, -0.5, -0.5, -0.05)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jaje4"]
+font_size = 45
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dfo5j"]
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_ytvug"]
+font_size = 45
+font_color = Color(0.843137, 0, 0, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3on3j"]
+font_size = 45
+font_color = Color(0.843137, 0.682353, 0, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_0n5fj"]
+resource_name = "fade_assign"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%monster/bg:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%townsfolk/bg:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%townsfolk:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%monster:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_u8a3w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%monster/bg:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%townsfolk/bg:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%townsfolk:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%monster:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6x8fc"]
+_data = {
+"RESET": SubResource("Animation_u8a3w"),
+"fade_assign": SubResource("Animation_0n5fj")
+}
+
 [node name="session" type="Node3D"]
 script = ExtResource("1_r2lji")
 
@@ -26,6 +179,292 @@ public_visibility = false
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
 
 [node name="town" parent="map" instance=ExtResource("1_dt637")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.2727, 0, -28.9927)
+
+[node name="blocker1" type="MeshInstance3D" parent="map"]
+unique_name_in_owner = true
+transform = Transform3D(2.35991, 0, 0, 0, 2.32535, 0, 0, 0, 1, 0.111246, 1.14083, 2.02079)
+mesh = SubResource("BoxMesh_8o0be")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="map/blocker1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="map/blocker1/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_ny6xf")
+
+[node name="blocker2" type="MeshInstance3D" parent="map"]
+unique_name_in_owner = true
+transform = Transform3D(2.35991, 0, 0, 0, 2.32535, 0, 0, 0, 1, -3.40129, 1.14083, -4.43636)
+mesh = SubResource("BoxMesh_8o0be")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="map/blocker2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="map/blocker2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1bl3a")
 
 [node name="players" type="Node3D" parent="."]
 unique_name_in_owner = true
+
+[node name="ui" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="pre_game" type="Control" parent="ui"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ui/pre_game"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ui/pre_game/MarginContainer"]
+layout_mode = 2
+
+[node name="left" type="VBoxContainer" parent="ui/pre_game/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="help_open" type="Button" parent="ui/pre_game/MarginContainer/HBoxContainer/left"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+text = "?"
+
+[node name="middle" type="VBoxContainer" parent="ui/pre_game/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="host_controls" type="Control" parent="ui/pre_game/MarginContainer/HBoxContainer/middle"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ui/pre_game/MarginContainer/HBoxContainer/middle/host_controls"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="room_code" type="Label" parent="ui/pre_game/MarginContainer/HBoxContainer/middle/host_controls/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Room Code:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="spcer" type="Label" parent="ui/pre_game/MarginContainer/HBoxContainer/middle/host_controls/HBoxContainer"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="begin_game" type="Button" parent="ui/pre_game/MarginContainer/HBoxContainer/middle/host_controls/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Begin Game"
+
+[node name="right" type="VBoxContainer" parent="ui/pre_game/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="help" type="Control" parent="ui"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="bg" type="ColorRect" parent="ui/help"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.560784, 0.392157, 0.180392, 0.92549)
+
+[node name="MarginContainer" type="MarginContainer" parent="ui/help/bg"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ui/help/bg/MarginContainer"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="ui/help/bg/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Welcome to Westmogus!"
+label_settings = SubResource("LabelSettings_jaje4")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="ui/help/bg/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "HOW TO PLAY:
+Once the host begins the game, someone will be randomly be chosen to be a monster masquerading as a human! The monster's goal is to stealthily murder all of the townsfolk, and the townsfolk's goal is to complete their tasks and keep an eye out for any suspicious behavior, or bodies! If a townsfolk player thinks they know who the monster is, they can report to the sheriff for a chance to duel the suspect!
+
+In order for the monster to win, they will have to eliminate all of the townsfolk. In order for the townsfolk to win, they will need to complete all their tasks, or successfully eliminate the monster via a duel."
+label_settings = SubResource("LabelSettings_dfo5j")
+autowrap_mode = 2
+
+[node name="Label3" type="Label" parent="ui/help/bg/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "CONTROLS:
+To move, use the WASD keys. 
+To interact with people or objects, use the E key when an object or person is highlighted."
+label_settings = SubResource("LabelSettings_dfo5j")
+autowrap_mode = 2
+
+[node name="help_close" type="Button" parent="ui/help/bg/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "I've got it!"
+
+[node name="monster" type="Control" parent="ui"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="bg" type="ColorRect" parent="ui/monster"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.113725, 0.0666667, 0.0156863, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="ui/monster/bg"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ui/monster/bg/MarginContainer"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="ui/monster/bg/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "You are the Monster."
+label_settings = SubResource("LabelSettings_ytvug")
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="ui/monster/bg/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Blend in. Eliminate the townsfolk."
+label_settings = SubResource("LabelSettings_dfo5j")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="townsfolk" type="Control" parent="ui"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="bg" type="ColorRect" parent="ui/townsfolk"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.113725, 0.0666667, 0.0156863, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="ui/townsfolk/bg"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ui/townsfolk/bg/MarginContainer"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="ui/townsfolk/bg/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "You are townsfolk."
+label_settings = SubResource("LabelSettings_3on3j")
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="ui/townsfolk/bg/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Complete your tasks, keep an eye out for the monster!"
+label_settings = SubResource("LabelSettings_dfo5j")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ui"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_6x8fc")
+}
+
+[connection signal="button_up" from="ui/pre_game/MarginContainer/HBoxContainer/left/help_open" to="." method="_on_help_open_button_up"]
+[connection signal="button_up" from="ui/pre_game/MarginContainer/HBoxContainer/middle/host_controls/HBoxContainer/begin_game" to="." method="_on_begin_game_button_up"]
+[connection signal="button_up" from="ui/help/bg/MarginContainer/VBoxContainer/help_close" to="." method="_on_help_close_button_up"]

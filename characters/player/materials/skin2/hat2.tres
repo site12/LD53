@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bvkg6s1365pua"]
+
+[ext_resource type="Texture2D" uid="uid://s8xnos11fpx7" path="res://characters/player/meshes and textures/HatDefault.png" id="1_h1jt0"]
+
+[resource]
+albedo_texture = ExtResource("1_h1jt0")
