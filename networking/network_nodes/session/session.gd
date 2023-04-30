@@ -48,16 +48,20 @@ func assign_role(is_sus):
 		%monster.visible = true
 		%pre_game.visible = false
 		sussy = true
+		%AnimationPlayer.play("fade_assign_monster")
 	else:
 		%townsfolk.visible = true
 		%pre_game.visible = false
-	%AnimationPlayer.play("fade_assign")
+		%AnimationPlayer.play("fade_assign_townsfolk")
+	
 
 func hosting():
 	%host_controls.visible = true
 	%room_code.text = "Room Code: "+str(name)
 
-
+func update_location(location:String):
+	%location_t.text = location
+	%location_m.text = location
 @rpc
 func client_start_game():
 	start_game()

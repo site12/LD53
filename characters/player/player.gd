@@ -64,25 +64,26 @@ func handle_name_label():
 
 func handle_locations():
 	#print($RayCast3D.get_collider().get_parent().name)
+	var sesh = GameInfo.sroot.get_child(0)
 	match $floorcast.get_collider().get_parent().name:
 		"church_main_building":
-			%location.text = "Church"
+			sesh.update_location("Church")
 		"hotel_main_bldg":
-			%location.text = "Hotel"
+			sesh.update_location("Hotel")
 		"train_station":
-			%location.text = "Train Station"
+			sesh.update_location("Train Station")
 		"saloon_main":
-			%location.text = "Saloon"
+			sesh.update_location("Saloon")
 		"water tower":
-			%location.text = "Water Tower"
+			sesh.update_location("Water Tower")
 		"graveyard":
-			%location.text = "Graveyard"
+			sesh.update_location("Graveyard")
 		"bank_main":
-			%location.text = "Bank"
+			sesh.update_location("Bank")
 		"store_main":
-			%location.text = "Store"
+			sesh.update_location("General Store")
 		"MeshInstance3D":
-			%location.text = ""
+			sesh.update_location("")
 
 func handle_movement(delta):
 	# Add the gravity.
