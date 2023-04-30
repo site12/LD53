@@ -548,10 +548,19 @@ properties/0/sync = true
 properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/sync = true
+properties/2/path = NodePath(".:skin_num")
+properties/2/spawn = true
+properties/2/sync = true
+properties/3/path = NodePath(".:player_state")
+properties/3/spawn = true
+properties/3/sync = true
+properties/4/path = NodePath("charmesh:rotation")
+properties/4/spawn = true
+properties/4/sync = true
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_5ynk5"]
 height = 0.34707
-radius = 1.32806
+radius = 1.04206
 
 [node name="player" type="CharacterBody3D" groups=["player"]]
 collision_layer = 2

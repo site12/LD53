@@ -6,6 +6,8 @@ const JUMP_VELOCITY = 4.5
 
 var sussy = false
 
+@export var skin_num = 0
+
 @onready var animtree = $anims/AnimationTree
 
 var network_authority = false
@@ -38,6 +40,8 @@ func _ready():
 	
 	if str(GameInfo.sroot.get_child(0).host_id) == name and %Camera3D.current:
 		GameInfo.sroot.get_child(0).hosting()
+	randomize()
+	set_skin(randi_range(0,GameInfo.sroot.get_child(0).players_info.size()))
 
 func _process(_delta):
 	move_and_slide()
@@ -170,6 +174,14 @@ func highlight(val:bool):
 		for x in bodymeshes:
 			x.material_overlay = null
 			%cowboyhat.material_overlay = null
+
+func death():
+	var ded = preload("res://characters/player/materials/kill_highlight/ded.tres")
+	for x in bodymeshes:
+		x.material_overlay = ded
+		
+	%cowboyhat.material_overlay = ded
+	
 
 func _on_area_3d_area_entered(area):
 	var sus = GameInfo.sroot.get_child(0).sussy

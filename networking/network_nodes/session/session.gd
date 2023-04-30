@@ -87,12 +87,11 @@ func spawn_player(player_info):
 	p.name = str(player_info[0])
 	%players.add_child(p,true)
 	players.append(p)
-	
+	#p.skin_num = skin_num
 	for player in players:
 		player.get_node("%player_synchronizer").set_visibility_for(1,true)
 		for x in players_info:
 			player.get_node("%player_synchronizer").set_visibility_for(x[0],true)
-	
 
 func server_remove_player_from_session(peer_id):
 	remove_player_from_session(peer_id)
