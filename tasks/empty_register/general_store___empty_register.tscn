@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://bgf8axvl5v6x5"]
+
+[ext_resource type="PackedScene" uid="uid://c26odwf06rhyp" path="res://tasks/task.tscn" id="1_nhpdo"]
+[ext_resource type="PackedScene" uid="uid://b5a8unyogcg3k" path="res://props/town/buildings/store/store_counter.tscn" id="2_1pgnj"]
+[ext_resource type="Script" path="res://tasks/empty_register/general_store___empty_register.gd" id="2_n88cn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x77hl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gppss"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yn0wb"]
+material = SubResource("StandardMaterial3D_gppss")
+
+[node name="General Store - Empty Cash Register" instance=ExtResource("1_nhpdo")]
+script = ExtResource("2_n88cn")
+task_type = 1
+task_category = 4
+task_activity = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="task" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35342, 2.08096)
+shape = SubResource("BoxShape3D_x77hl")
+
+[node name="store_counter" parent="." index="2" instance=ExtResource("2_1pgnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.063, 0)
+
+[node name="mesh" type="MeshInstance3D" parent="store_counter" index="2"]
+unique_name_in_owner = true
+transform = Transform3D(0.28192, 0, 0, 0, 0.678675, 0, -8.88178e-16, 0, 0.552154, -0.176485, 0.374221, 1.96939)
+mesh = SubResource("BoxMesh_yn0wb")

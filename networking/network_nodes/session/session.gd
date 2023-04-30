@@ -10,6 +10,22 @@ var player_scene = preload("res://characters/player/player.tscn")
 
 var players:Array = []
 
+var tasks = [
+	"Church - Pray",
+	"Bank - Stamp Form",
+	"Bar - Take a Shot",
+	"Bar - Clean Table",
+	"Hotel - Sign Guestbook",
+	"Hotel - Stoke Fire",
+	"General Store - Wash Produce",
+	"General Store - Empty Cash Register",
+	"Water Tower - Plug Leak",
+	"Train Station - Prepare Station for Arrival",
+	"Graveyard - Pay Respects"
+]
+
+var local_tasks = []
+
 func _ready():
 	self.name = sname
 	%session_synchronizer.set_visibility_for(1,true)
@@ -39,8 +55,22 @@ func server_start_game():
 			rpc_id(player[0],"assign_role",true)
 		else:
 			rpc_id(player[0],"assign_role",false)
+			rpc_id(player[0],"assign_tasks",player[0],5)
 		
 		p +=1
+
+@rpc
+func assign_tasks(peer_id,num_tasks):
+	if str(peer_id) == str(GameInfo.peer_id):
+		randomize()
+		var list = tasks
+		list.shuffle()
+		local_tasks.resize(num_tasks)
+		var text = "TASK LIST: \n"
+		for x in num_tasks:
+			local_tasks[x] = list[x]
+			text += local_tasks[x] +"\n"
+		%task_list.text = text
 
 @rpc
 func assign_role(is_sus):

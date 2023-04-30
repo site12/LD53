@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://bsx3kcubxflky"]
+
+[ext_resource type="PackedScene" uid="uid://c26odwf06rhyp" path="res://tasks/task.tscn" id="1_2ik78"]
+[ext_resource type="Script" path="res://tasks/sign_guestbook/guestbook.gd" id="2_3vs2m"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_must6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h188j"]
+albedo_color = Color(0.329412, 0.176471, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hve43"]
+material = SubResource("StandardMaterial3D_h188j")
+
+[node name="Hotel - Sign Guestbook" instance=ExtResource("1_2ik78")]
+script = ExtResource("2_3vs2m")
+task_category = 3
+task_activity = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="task" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0674879, 0)
+shape = SubResource("BoxShape3D_must6")
+
+[node name="mesh" type="MeshInstance3D" parent="." index="2"]
+unique_name_in_owner = true
+transform = Transform3D(0.282545, 0, 0.320955, 0, 0.101514, 0, -0.183719, 0, 0.493604, 0, 0, 0)
+mesh = SubResource("BoxMesh_hve43")

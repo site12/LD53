@@ -1,6 +1,6 @@
-[gd_scene load_steps=22 format=3 uid="uid://bteod4mut7e2h"]
+[gd_scene load_steps=23 format=3 uid="uid://bteod4mut7e2h"]
 
-[ext_resource type="PackedScene" uid="uid://3xuh3lgkrcb7" path="res://maps/town/town.tscn" id="1_dt637"]
+[ext_resource type="PackedScene" uid="uid://cbjgv0p40ws4s" path="res://maps/town/town.tscn" id="1_dt637"]
 [ext_resource type="Script" path="res://networking/network_nodes/session/session.gd" id="1_r2lji"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_xqa7b"]
@@ -54,6 +54,9 @@ border_width_bottom = 2
 border_color = Color(0.8, 0.8, 0.8, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_t2lq3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3nspk"]
+font_size = 25
 
 [sub_resource type="LabelSettings" id="LabelSettings_jaje4"]
 font_size = 45
@@ -159,71 +162,7 @@ tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_0n5fj"]
-resource_name = "fade_assign_townsfolk"
-length = 4.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%monster/bg:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 3, 4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("%townsfolk/bg:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 3, 4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("%townsfolk:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(4),
-"transitions": PackedFloat32Array(1),
-"update": 1,
 "values": [false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("%during_game:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("%townsfolk_hud:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_6hp3j"]
@@ -300,6 +239,70 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_0n5fj"]
+resource_name = "fade_assign_townsfolk"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%monster/bg:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%townsfolk/bg:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%townsfolk:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%during_game:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%townsfolk_hud:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6x8fc"]
@@ -463,6 +466,7 @@ theme_override_constants/margin_bottom = 15
 layout_mode = 2
 
 [node name="left" type="VBoxContainer" parent="ui/during_game/townsfolk_hud/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 
@@ -485,16 +489,13 @@ label_settings = SubResource("LabelSettings_t2lq3")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="spacer" type="Label" parent="ui/during_game/townsfolk_hud/HBoxContainer/left"]
-custom_minimum_size = Vector2(0, 25)
-layout_mode = 2
-
 [node name="ColorRect" type="ColorRect" parent="ui/during_game/townsfolk_hud/HBoxContainer/left"]
-custom_minimum_size = Vector2(150, 100)
+custom_minimum_size = Vector2(150, 200)
 layout_mode = 2
 color = Color(0, 0, 0, 0.631373)
 
 [node name="MarginContainer" type="MarginContainer" parent="ui/during_game/townsfolk_hud/HBoxContainer/left/ColorRect"]
+custom_minimum_size = Vector2(0, 200)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -508,17 +509,19 @@ theme_override_constants/margin_bottom = 5
 
 [node name="task_list" type="RichTextLabel" parent="ui/during_game/townsfolk_hud/HBoxContainer/left/ColorRect/MarginContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(150, 100)
+custom_minimum_size = Vector2(150, 200)
 layout_mode = 2
 text = "TASK LIST:"
 
 [node name="spacer2" type="Label" parent="ui/during_game/townsfolk_hud/HBoxContainer/left"]
-custom_minimum_size = Vector2(0, 400)
+custom_minimum_size = Vector2(0, 350)
 layout_mode = 2
 
 [node name="location_t" type="Label" parent="ui/during_game/townsfolk_hud/HBoxContainer/left"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 45)
 layout_mode = 2
+label_settings = SubResource("LabelSettings_3nspk")
 
 [node name="middle" type="VBoxContainer" parent="ui/during_game/townsfolk_hud/HBoxContainer"]
 layout_mode = 2
@@ -547,6 +550,7 @@ theme_override_constants/margin_bottom = 15
 layout_mode = 2
 
 [node name="left" type="VBoxContainer" parent="ui/during_game/monster_hud/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 
@@ -569,16 +573,13 @@ label_settings = SubResource("LabelSettings_t2lq3")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="spacer" type="Label" parent="ui/during_game/monster_hud/HBoxContainer/left"]
-custom_minimum_size = Vector2(0, 25)
-layout_mode = 2
-
 [node name="ColorRect" type="ColorRect" parent="ui/during_game/monster_hud/HBoxContainer/left"]
-custom_minimum_size = Vector2(150, 100)
+custom_minimum_size = Vector2(300, 200)
 layout_mode = 2
 color = Color(0, 0, 0, 0.631373)
 
 [node name="MarginContainer" type="MarginContainer" parent="ui/during_game/monster_hud/HBoxContainer/left/ColorRect"]
+custom_minimum_size = Vector2(300, 200)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -591,18 +592,20 @@ theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
 [node name="task_list" type="RichTextLabel" parent="ui/during_game/monster_hud/HBoxContainer/left/ColorRect/MarginContainer"]
-custom_minimum_size = Vector2(150, 100)
+custom_minimum_size = Vector2(300, 200)
 layout_mode = 2
 text = "TASK LIST:
-MURDER EVERYONE"
+Monster - Murder Everyone"
 
 [node name="spacer2" type="Label" parent="ui/during_game/monster_hud/HBoxContainer/left"]
-custom_minimum_size = Vector2(0, 400)
+custom_minimum_size = Vector2(0, 350)
 layout_mode = 2
 
 [node name="location_m" type="Label" parent="ui/during_game/monster_hud/HBoxContainer/left"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 45)
 layout_mode = 2
+label_settings = SubResource("LabelSettings_3nspk")
 
 [node name="middle" type="VBoxContainer" parent="ui/during_game/monster_hud/HBoxContainer"]
 layout_mode = 2

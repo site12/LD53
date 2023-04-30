@@ -22,6 +22,7 @@ enum PlayerState {
 
 @onready var bodymeshes = [%head,%body]
 
+var overlapped_object = null
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -182,22 +183,44 @@ func death():
 		x.material_overlay = ded
 		
 	%cowboyhat.material_overlay = ded
-	
 
 func _on_area_3d_area_entered(area):
+	if not network_authority:
+		return
 	var sus = GameInfo.sroot.get_child(0).sussy
-	#print(area.get_parent().name)
+	
+	## highlight players
 	var baka = false
 	if area.get_parent().name == str(GameInfo.peer_id):
 		baka = true
+	
 	if area.get_parent().is_in_group("player") and sus and not baka:
-		area.get_parent().highlight(true)
+		overlapped_object = area.get_parent()
+		overlapped_object.highlight(true)
+		
+	##highlight tasks
+	#print(area.get_parent().name)
+	if area.get_parent().is_in_group("task") and not sus:
+		var tasks = GameInfo.sroot.get_child(0).local_tasks
+		for x in tasks:
+			if area.get_parent().name == x:
+				overlapped_object = area.get_parent()
+				overlapped_object.highlight(true)
 
 func _on_area_3d_area_exited(area):
+	if not network_authority:
+		return
 	var sus = GameInfo.sroot.get_child(0).sussy
-	#print(area.get_parent().name)
+	
 	var baka = false
 	if area.get_parent().name == str(GameInfo.peer_id):
 		baka = true
 	if area.get_parent().is_in_group("player") and sus and not baka:
 		area.get_parent().highlight(false)
+	
+	if area.get_parent().is_in_group("task") and not sus:
+		area.get_parent().highlight(false)
+	overlapped_object = null
+
+		
+	
