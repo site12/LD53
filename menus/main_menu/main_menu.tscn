@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://b7vjvyh07s52j"]
+[gd_scene load_steps=6 format=3 uid="uid://b7vjvyh07s52j"]
 
 [ext_resource type="Script" path="res://menus/main_menu/main_menu.gd" id="1_4amak"]
+[ext_resource type="Texture2D" uid="uid://1u77eklto0bv" path="res://textures/Screenshot_20230501_012732.png" id="2_hwmph"]
+[ext_resource type="FontFile" uid="uid://3uxvxc2jvvnc" path="res://fonts/vanilla whale.otf" id="3_uamir"]
+[ext_resource type="FontFile" uid="uid://ebsuo67scq1m" path="res://fonts/College Boy.otf" id="4_q257a"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_cmv2w"]
-font_size = 45
+[sub_resource type="LabelSettings" id="LabelSettings_rkdxr"]
+font = ExtResource("3_uamir")
+font_size = 105
 
 [node name="main_menu" type="Control"]
 layout_mode = 3
@@ -13,6 +17,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4amak")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_hwmph")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -40,12 +53,12 @@ size_flags_horizontal = 3
 [node name="Label" type="Label" parent="MarginContainer/screen/menu/left"]
 layout_mode = 2
 text = "Vultures at Dawn"
-label_settings = SubResource("LabelSettings_cmv2w")
+label_settings = SubResource("LabelSettings_rkdxr")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="spacer" type="Label" parent="MarginContainer/screen/menu/left"]
-custom_minimum_size = Vector2(0, 150)
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 text = "
 "
@@ -66,6 +79,8 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("4_q257a")
+theme_override_font_sizes/font_size = 25
 text = "HOST"
 
 [node name="spacer3" type="Label" parent="MarginContainer/screen/menu/left"]
@@ -90,6 +105,8 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("4_q257a")
+theme_override_font_sizes/font_size = 25
 text = "JOIN
 "
 
@@ -106,6 +123,8 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("4_q257a")
+theme_override_font_sizes/font_size = 25
 text = "QUIT"
 
 [connection signal="text_changed" from="MarginContainer/screen/menu/left/playername" to="." method="_on_playername_text_changed"]

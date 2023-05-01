@@ -39,10 +39,14 @@ func _ready():
 		%Camera3D.current = false
 	handle_name_label()
 	
+	GameInfo.uiroot.get_node("%loading").visible = false
+	
 	if str(GameInfo.sroot.get_child(0).host_id) == name and %Camera3D.current:
 		GameInfo.sroot.get_child(0).hosting()
 	randomize()
 	set_skin(randi_range(0,GameInfo.sroot.get_child(0).players_info.size()))
+	#await get_tree().create_timer(5).timeout
+	#death()
 
 func _process(_delta):
 	move_and_slide()
@@ -180,12 +184,16 @@ func highlight(val:bool):
 			x.material_overlay = null
 			%cowboyhat.material_overlay = null
 
+@rpc("any_peer")
 func death():
+	
+	%charmesh.rotation.x = deg_to_rad(90)
 	var ded = preload("res://characters/player/materials/kill_highlight/ded.tres")
 	for x in bodymeshes:
 		x.material_overlay = ded
 		
 	%cowboyhat.material_overlay = ded
+	
 
 func _on_area_3d_area_entered(area):
 	if not network_authority:
@@ -226,8 +234,10 @@ func _on_area_3d_area_exited(area):
 	overlapped_object = null
 
 func handle_interactions(_event):
+	sussy = GameInfo.sroot.get_child(0).sussy
 	if Input.is_action_pressed("interaction") and overlapped_object != null:
-		if overlapped_object.is_in_group("player"):
-			return
-		overlapped_object.interact(self)
-		network_authority = false
+		if overlapped_object.is_in_group("player") and sussy:
+			GameInfo.sroot.get_child(0).rpc_id(1,"server_kill_player",overlapped_object.name)
+		elif not sussy:
+			overlapped_object.interact(self)
+			network_authority = false

@@ -41,6 +41,9 @@ enum TaskList {
 
 var interacting_player
 
+func _ready():
+	%desc.text = name
+
 func highlight(val):
 	if val:
 		%mesh.material_overlay = h_mat
@@ -69,3 +72,5 @@ func _on_begin_button_up():
 	%task.queue_free()
 	%clayer.layer = -1
 	GameInfo.sroot.get_child(0).rpc_id(1,"server_complete_task")
+	GameInfo.sroot.get_child(0).local_tasks.erase(name)
+	GameInfo.sroot.get_child(0).update_task_list()

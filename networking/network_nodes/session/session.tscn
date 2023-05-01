@@ -1,7 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://bteod4mut7e2h"]
+[gd_scene load_steps=27 format=3 uid="uid://bteod4mut7e2h"]
 
 [ext_resource type="PackedScene" uid="uid://cbjgv0p40ws4s" path="res://maps/town/town.tscn" id="1_dt637"]
 [ext_resource type="Script" path="res://networking/network_nodes/session/session.gd" id="1_r2lji"]
+[ext_resource type="FontFile" uid="uid://ebsuo67scq1m" path="res://fonts/College Boy.otf" id="3_jx0lm"]
+[ext_resource type="FontFile" uid="uid://3uxvxc2jvvnc" path="res://fonts/vanilla whale.otf" id="3_y4ryh"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_xqa7b"]
 properties/0/path = NodePath(".:sname")
@@ -56,6 +58,12 @@ data = PackedVector3Array(-0.5, 0.5, 0.05, 0.5, 0.5, 0.05, -0.5, -0.5, 0.05, 0.5
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_1bl3a"]
 data = PackedVector3Array(-0.5, 0.5, 0.05, 0.5, 0.5, 0.05, -0.5, -0.5, 0.05, 0.5, 0.5, 0.05, 0.5, -0.5, 0.05, -0.5, -0.5, 0.05, 0.5, 0.5, -0.05, -0.5, 0.5, -0.05, 0.5, -0.5, -0.05, -0.5, 0.5, -0.05, -0.5, -0.5, -0.05, 0.5, -0.5, -0.05, 0.5, 0.5, 0.05, 0.5, 0.5, -0.05, 0.5, -0.5, 0.05, 0.5, 0.5, -0.05, 0.5, -0.5, -0.05, 0.5, -0.5, 0.05, -0.5, 0.5, -0.05, -0.5, 0.5, 0.05, -0.5, -0.5, -0.05, -0.5, 0.5, 0.05, -0.5, -0.5, 0.05, -0.5, -0.5, -0.05, 0.5, 0.5, 0.05, -0.5, 0.5, 0.05, 0.5, 0.5, -0.05, -0.5, 0.5, 0.05, -0.5, 0.5, -0.05, 0.5, 0.5, -0.05, -0.5, -0.5, 0.05, 0.5, -0.5, 0.05, -0.5, -0.5, -0.05, 0.5, -0.5, 0.05, 0.5, -0.5, -0.05, -0.5, -0.5, -0.05)
 
+[sub_resource type="LabelSettings" id="LabelSettings_g2tot"]
+font = ExtResource("3_jx0lm")
+font_size = 35
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d3gh5"]
 border_width_left = 3
 border_width_top = 3
@@ -72,28 +80,41 @@ border_width_bottom = 2
 border_color = Color(0.8, 0.8, 0.8, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_t2lq3"]
+font = ExtResource("3_y4ryh")
+font_size = 20
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_3nspk"]
 font_size = 25
 
 [sub_resource type="LabelSettings" id="LabelSettings_jaje4"]
+font = ExtResource("3_jx0lm")
 font_size = 45
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_dfo5j"]
-font_size = 18
+[sub_resource type="LabelSettings" id="LabelSettings_wewrt"]
+font_size = 20
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ytvug"]
-font_size = 45
+font = ExtResource("3_y4ryh")
+font_size = 75
 font_color = Color(0.843137, 0, 0, 1)
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_dfo5j"]
+font = ExtResource("3_jx0lm")
+font_size = 35
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_3on3j"]
-font_size = 45
+font = ExtResource("3_y4ryh")
+font_size = 75
 font_color = Color(0.843137, 0.682353, 0, 1)
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
@@ -438,6 +459,7 @@ alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 text = "Room Code:"
+label_settings = SubResource("LabelSettings_g2tot")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -449,9 +471,12 @@ vertical_alignment = 1
 
 [node name="begin_game" type="Button" parent="ui/pre_game/MarginContainer/HBoxContainer/middle/host_controls/HBoxContainer"]
 unique_name_in_owner = true
+texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("3_y4ryh")
+theme_override_font_sizes/font_size = 35
 text = "Begin Game"
 
 [node name="right" type="VBoxContainer" parent="ui/pre_game/MarginContainer/HBoxContainer"]
@@ -499,12 +524,15 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_gt3as")
 show_percentage = false
 
 [node name="Label" type="Label" parent="ui/during_game/townsfolk_hud/HBoxContainer/left/progress_t"]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_y4ryh")
+theme_override_font_sizes/font_size = 50
 text = "TOWNSFOLK PROGRESS"
 label_settings = SubResource("LabelSettings_t2lq3")
 horizontal_alignment = 1
@@ -532,6 +560,8 @@ theme_override_constants/margin_bottom = 5
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 200)
 layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("3_jx0lm")
+theme_override_font_sizes/normal_font_size = 20
 text = "TASK LIST:"
 
 [node name="spacer2" type="Label" parent="ui/during_game/townsfolk_hud/HBoxContainer/left"]
@@ -614,8 +644,11 @@ theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
 [node name="task_list" type="RichTextLabel" parent="ui/during_game/monster_hud/HBoxContainer/left/ColorRect/MarginContainer"]
+texture_filter = 1
 custom_minimum_size = Vector2(300, 200)
 layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("3_jx0lm")
+theme_override_font_sizes/normal_font_size = 20
 text = "TASK LIST:
 Vulture - Murder Everyone"
 
@@ -680,6 +713,7 @@ layout_mode = 2
 text = "Welcome to Vultures at Dawn!"
 label_settings = SubResource("LabelSettings_jaje4")
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="ui/help/bg/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -687,7 +721,7 @@ text = "HOW TO PLAY:
 Once the host begins the game, someone will be randomly be chosen to be the Vulture; a monster masquerading as a human! The vulture's goal is to stealthily murder all of the townsfolk, and the townsfolk's goal is to complete their tasks and keep an eye out for any suspicious behavior, or bodies! If a townsfolk player thinks they know who the vulture is, they can report to the sheriff for a chance to duel the suspect!
 
 In order for the vulture to win, they will have to eliminate all of the townsfolk. In order for the townsfolk to win, they will need to complete all their tasks, or successfully eliminate the vulture by dueling them."
-label_settings = SubResource("LabelSettings_dfo5j")
+label_settings = SubResource("LabelSettings_wewrt")
 autowrap_mode = 2
 
 [node name="Label3" type="Label" parent="ui/help/bg/MarginContainer/VBoxContainer"]
@@ -695,7 +729,7 @@ layout_mode = 2
 text = "CONTROLS:
 To move, use the WASD keys. 
 To interact with people or objects, use the E key when an object or person is highlighted."
-label_settings = SubResource("LabelSettings_dfo5j")
+label_settings = SubResource("LabelSettings_wewrt")
 autowrap_mode = 2
 
 [node name="help_close" type="Button" parent="ui/help/bg/MarginContainer/VBoxContainer"]
@@ -703,6 +737,8 @@ custom_minimum_size = Vector2(150, 25)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("3_jx0lm")
+theme_override_font_sizes/font_size = 30
 text = "I've got it!"
 
 [node name="monster" type="Control" parent="ui"]

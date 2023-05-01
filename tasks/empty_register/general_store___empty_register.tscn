@@ -17,6 +17,7 @@ script = ExtResource("2_n88cn")
 task_type = 1
 task_category = 4
 task_activity = 8
+wait_time_sec = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="task" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35342, 2.08096)

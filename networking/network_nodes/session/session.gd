@@ -30,7 +30,7 @@ var tasks = [
 
 var local_tasks = []
 
-@export var num_tasks = 0
+@export var num_tasks = 5
 @export var completed_tasks = 0
 
 func _ready():
@@ -44,6 +44,7 @@ func _process(_delta):
 	if game_begun:
 		%progress_t.value = completed_tasks
 		%progress_m.value = completed_tasks
+		
 	
 	for x in %players.get_children():
 		var id:int = x.name.to_int()
@@ -76,7 +77,7 @@ func server_start_game():
 	randomize()
 	var amogus = randi_range(0,players_info.size()-1)
 	
-	num_tasks = players.size() * 5
+	num_tasks = (%players.get_child_count()-1)*5
 	%progress_t.max_value = num_tasks
 	%progress_m.max_value = num_tasks
 	
@@ -104,6 +105,23 @@ func assign_tasks(peer_id,_num_tasks):
 			local_tasks[x] = list[x]
 			text += local_tasks[x] +"\n"
 		%task_list.text = text
+
+func update_task_list():
+	%task_list.text = ""
+	var text = "TASK LIST: \n"
+	for x in num_tasks:
+		text += local_tasks[x] +"\n"
+	%task_list.text = text
+
+@rpc("any_peer")
+func server_kill_player(peer_id):
+	for x in players:
+		if x.name == str(peer_id):
+			x.player_state = 3
+			x.get_node("%charmesh").rotation.x = deg_to_rad(90)
+			for y in peer_ids:
+				x.get_node("player_synchronizer").set_visibility_for(y,false)
+			x.rpc_id(peer_id.to_int(),"death")
 
 @rpc
 func assign_role(is_sus):

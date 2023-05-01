@@ -13,8 +13,10 @@ material = SubResource("StandardMaterial3D_h188j")
 
 [node name="Hotel - Sign Guestbook" instance=ExtResource("1_2ik78")]
 script = ExtResource("2_3vs2m")
+task_type = 1
 task_category = 3
 task_activity = 5
+wait_time_sec = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="task" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0674879, 0)

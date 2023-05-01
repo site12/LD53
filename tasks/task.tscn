@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://c26odwf06rhyp"]
+[gd_scene load_steps=6 format=3 uid="uid://c26odwf06rhyp"]
 
 [ext_resource type="Script" path="res://tasks/task.gd" id="1_ss7x0"]
+[ext_resource type="FontFile" uid="uid://ebsuo67scq1m" path="res://fonts/College Boy.otf" id="2_onlul"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_12rd8"]
-font_size = 35
+font = ExtResource("2_onlul")
+font_size = 25
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vhfyg"]
 border_width_left = 3
@@ -50,6 +52,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="water_tower" type="Control" parent="clayer/task_ui/button"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="wait" type="Control" parent="clayer/task_ui"]
 unique_name_in_owner = true
 visible = false
@@ -75,7 +82,7 @@ offset_bottom = 99.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-color = Color(0.560784, 0.392157, 0.180392, 0.92549)
+color = Color(0.560784, 0.392157, 0.180392, 0.988235)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="clayer/task_ui/wait/ColorRect"]
 layout_mode = 1
@@ -86,14 +93,19 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="task" type="Label" parent="clayer/task_ui/wait/ColorRect/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "[CATEGORY] TASK:"
 
 [node name="desc" type="Label" parent="clayer/task_ui/wait/ColorRect/VBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 1
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
 text = "DESC"
 label_settings = SubResource("LabelSettings_12rd8")
+horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Control" type="Control" parent="clayer/task_ui/wait/ColorRect/VBoxContainer"]
@@ -133,6 +145,8 @@ grow_horizontal = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("2_onlul")
+theme_override_font_sizes/font_size = 20
 text = "BEGIN"
 
 [node name="progress" type="ProgressBar" parent="clayer/task_ui/wait/ColorRect/VBoxContainer/Control"]

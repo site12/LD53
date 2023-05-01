@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://cko25f6nlvhul" path="res://props/town/buildings/saloon/bar_chair.tscn" id="5_ih7ld"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7mxwr"]
-size = Vector3(1.32069, 1, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_74kbs"]
 albedo_texture = ExtResource("3_0rf7u")
@@ -46,6 +45,7 @@ script = ExtResource("2_vxxnl")
 task_type = 1
 task_category = 2
 task_activity = 4
+wait_time_sec = 7
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="task" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.692419, 0)

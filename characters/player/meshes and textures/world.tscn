@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://dvoyqbhsuawrh"]
+[gd_scene load_steps=6 format=3 uid="uid://dvoyqbhsuawrh"]
 
 [ext_resource type="PackedScene" uid="uid://b317myro4801p" path="res://menus/splash.tscn" id="1_5ghyq"]
 [ext_resource type="PackedScene" uid="uid://b7vjvyh07s52j" path="res://menus/main_menu/main_menu.tscn" id="1_c7aox"]
+[ext_resource type="FontFile" uid="uid://3uxvxc2jvvnc" path="res://fonts/vanilla whale.otf" id="1_di3ly"]
 [ext_resource type="PackedScene" uid="uid://kfjql8yuaa27" path="res://networking/network_nodes/network_root.tscn" id="3_35g40"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0sd38"]
+font = ExtResource("1_di3ly")
+font_size = 75
 
 [node name="game_root" type="Node"]
 
@@ -15,7 +20,34 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="loading" type="ColorRect" parent="ui_root"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="ui_root/loading"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "LOADING..."
+label_settings = SubResource("LabelSettings_0sd38")
+
 [node name="splash" parent="ui_root" instance=ExtResource("1_5ghyq")]
+unique_name_in_owner = true
 layout_mode = 1
 
 [node name="main_menu" parent="ui_root" instance=ExtResource("1_c7aox")]

@@ -42,8 +42,10 @@ data = PackedVector3Array(-0.2083, 0.2917, -0.875, -0.2083, 0.1667, -0.875, 0.54
 
 [node name="Bank - Stamp Form" instance=ExtResource("1_egyqp")]
 script = ExtResource("2_dy3tg")
+task_type = 1
 task_category = 1
 task_activity = 1
+wait_time_sec = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="task" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.558652, 0)

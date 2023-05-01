@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://cbjgv0p40ws4s"]
+[gd_scene load_steps=66 format=3 uid="uid://cbjgv0p40ws4s"]
 
 [ext_resource type="Texture2D" uid="uid://b5pw85yv3csv8" path="res://textures/Wood_11-128x128.png" id="2_pkbc3"]
 [ext_resource type="PackedScene" uid="uid://cyw6ov74l46k8" path="res://props/town/misc/fence_join.tscn" id="4_caq4h"]
@@ -22,12 +22,12 @@
 [ext_resource type="PackedScene" uid="uid://ygg0l6w3bxut" path="res://props/town/buildings/saloon/stool.tscn" id="17_snlf4"]
 [ext_resource type="PackedScene" uid="uid://c4n1flges86fi" path="res://tasks/clean_bar_table/bar_clean_table.tscn" id="18_vtcke"]
 [ext_resource type="PackedScene" uid="uid://cvfaj4wnnoqx2" path="res://tasks/take_a_shot/bar_take_a_shot.tscn" id="19_enkwr"]
-[ext_resource type="PackedScene" path="res://tasks/plug_leak/Water Tower - Plug Leak.tscn" id="19_lbfif"]
+[ext_resource type="PackedScene" uid="uid://dr38ekqh50nkr" path="res://tasks/plug_leak/Water Tower - Plug Leak.tscn" id="19_lbfif"]
 [ext_resource type="PackedScene" uid="uid://cwgvdd13728jc" path="res://tasks/stamp_form/bank___stamp_form.tscn" id="23_8m2cl"]
 [ext_resource type="PackedScene" uid="uid://tok53qkqrv05" path="res://props/town/buildings/bank/bank_counter.tscn" id="24_tthvp"]
 [ext_resource type="PackedScene" uid="uid://ck5u0pb02brc0" path="res://tasks/wash_produce/general_store___wash_produce.tscn" id="27_85vky"]
 [ext_resource type="PackedScene" uid="uid://bgf8axvl5v6x5" path="res://tasks/empty_register/general_store___empty_register.tscn" id="27_sm6vd"]
-[ext_resource type="PackedScene" path="res://tasks/f_to_respect/graveyard___pay_respects.tscn" id="27_v63jd"]
+[ext_resource type="PackedScene" uid="uid://c0mp7cte53jxv" path="res://tasks/f_to_respect/graveyard___pay_respects.tscn" id="27_v63jd"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_wqwgs"]
 size = Vector2(80, 80)
@@ -218,8 +218,39 @@ data = PackedVector3Array(4.75, 1.375, 3.25, 4.75, 1.375, 3.5, 0.75, 1.375, 3.5,
 [sub_resource type="BoxShape3D" id="BoxShape3D_eb8ra"]
 size = Vector3(11.1878, 3.04844, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jbs46"]
+albedo_color = Color(0.494118, 0.109804, 0.117647, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_n21ym"]
+top_radius = 0.05
+bottom_radius = 0.05
+height = 0.25
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_spt4a"]
+albedo_color = Color(0.109804, 0.317647, 0.211765, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p7cjm"]
+albedo_color = Color(0.145098, 0.262745, 0.494118, 1)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_4ywqw"]
 size = Vector3(7.66007, 0.141608, 10.5947)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lpvgr"]
+albedo_color = Color(0.301961, 0.768627, 0.415686, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_trrrf"]
+radius = 0.2
+height = 0.3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3x1bq"]
+albedo_color = Color(1, 0.235294, 0.290196, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fuuma"]
+albedo_color = Color(0.654902, 0.333333, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_vuyru"]
+radius = 0.18
+height = 0.4
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fsq7x"]
 size = Vector3(17.4552, 0.141608, 13.4326)
@@ -230,12 +261,12 @@ sky_horizon_color = Color(0, 0.337255, 0.372549, 1)
 ground_bottom_color = Color(0, 0.337255, 0.372549, 1)
 ground_horizon_color = Color(0, 0.337255, 0.372549, 1)
 
-[sub_resource type="Sky" id="Sky_1nxix"]
+[sub_resource type="Sky" id="Sky_j7cts"]
 sky_material = SubResource("ProceduralSkyMaterial_0qwaq")
 
 [sub_resource type="Environment" id="Environment_7xn6x"]
 background_mode = 2
-sky = SubResource("Sky_1nxix")
+sky = SubResource("Sky_j7cts")
 tonemap_mode = 2
 glow_enabled = true
 
@@ -790,6 +821,93 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.1111, 0, 25.7984)
 [node name="Bar - Clean Table" parent="props/buildings/saloon" instance=ExtResource("18_vtcke")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.5738, 0.02721, 29.0526)
 
+[node name="bottles" type="Node3D" parent="props/buildings/saloon"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.466354, 0, 0)
+
+[node name="bottle1" type="MeshInstance3D" parent="props/buildings/saloon/bottles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.2989, 2.12904, 24.941)
+material_override = SubResource("StandardMaterial3D_jbs46")
+mesh = SubResource("CylinderMesh_n21ym")
+skeleton = NodePath("../..")
+
+[node name="bottle2" type="MeshInstance3D" parent="props/buildings/saloon/bottles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.0489, 2.12904, 24.8076)
+material_override = SubResource("StandardMaterial3D_spt4a")
+mesh = SubResource("CylinderMesh_n21ym")
+skeleton = NodePath("../..")
+
+[node name="bottle3" type="MeshInstance3D" parent="props/buildings/saloon/bottles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.6844, 2.12904, 24.941)
+material_override = SubResource("StandardMaterial3D_jbs46")
+mesh = SubResource("CylinderMesh_n21ym")
+skeleton = NodePath("../..")
+
+[node name="bottle4" type="MeshInstance3D" parent="props/buildings/saloon/bottles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.637, 2.12904, 25.0189)
+material_override = SubResource("StandardMaterial3D_p7cjm")
+mesh = SubResource("CylinderMesh_n21ym")
+skeleton = NodePath("../..")
+
+[node name="bottle5" type="MeshInstance3D" parent="props/buildings/saloon/bottles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.1412, 2.12904, 24.8319)
+material_override = SubResource("StandardMaterial3D_jbs46")
+mesh = SubResource("CylinderMesh_n21ym")
+skeleton = NodePath("../..")
+
+[node name="bottle6" type="MeshInstance3D" parent="props/buildings/saloon/bottles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.8335, 2.12904, 24.941)
+material_override = SubResource("StandardMaterial3D_p7cjm")
+mesh = SubResource("CylinderMesh_n21ym")
+skeleton = NodePath("../..")
+
+[node name="bottle7" type="MeshInstance3D" parent="props/buildings/saloon/bottles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.5451, 2.12904, 24.7613)
+material_override = SubResource("StandardMaterial3D_jbs46")
+mesh = SubResource("CylinderMesh_n21ym")
+skeleton = NodePath("../..")
+
+[node name="bottle8" type="MeshInstance3D" parent="props/buildings/saloon/bottles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.2989, 2.12904, 24.8665)
+material_override = SubResource("StandardMaterial3D_spt4a")
+mesh = SubResource("CylinderMesh_n21ym")
+skeleton = NodePath("../..")
+
+[node name="bottle9" type="MeshInstance3D" parent="props/buildings/saloon/bottles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.8588, 2.12904, 24.941)
+material_override = SubResource("StandardMaterial3D_p7cjm")
+mesh = SubResource("CylinderMesh_n21ym")
+skeleton = NodePath("../..")
+
+[node name="bottle10" type="MeshInstance3D" parent="props/buildings/saloon/bottles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.6486, 2.12904, 24.7375)
+material_override = SubResource("StandardMaterial3D_p7cjm")
+mesh = SubResource("CylinderMesh_n21ym")
+skeleton = NodePath("../..")
+
+[node name="bottle11" type="MeshInstance3D" parent="props/buildings/saloon/bottles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.29, 2.12904, 24.9714)
+material_override = SubResource("StandardMaterial3D_spt4a")
+mesh = SubResource("CylinderMesh_n21ym")
+skeleton = NodePath("../..")
+
+[node name="bottle12" type="MeshInstance3D" parent="props/buildings/saloon/bottles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.8906, 2.12904, 24.7679)
+material_override = SubResource("StandardMaterial3D_spt4a")
+mesh = SubResource("CylinderMesh_n21ym")
+skeleton = NodePath("../..")
+
+[node name="bottle13" type="MeshInstance3D" parent="props/buildings/saloon/bottles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5878, 2.12904, 24.9922)
+material_override = SubResource("StandardMaterial3D_jbs46")
+mesh = SubResource("CylinderMesh_n21ym")
+skeleton = NodePath("../..")
+
+[node name="bottle14" type="MeshInstance3D" parent="props/buildings/saloon/bottles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.3153, 2.12904, 24.7375)
+material_override = SubResource("StandardMaterial3D_p7cjm")
+mesh = SubResource("CylinderMesh_n21ym")
+skeleton = NodePath("../..")
+
 [node name="water tower" type="Node3D" parent="props/buildings"]
 
 [node name="water_main" type="Area3D" parent="props/buildings/water tower"]
@@ -854,6 +972,53 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.973, 0, 6.53119)
 
 [node name="General Store - Wash Produce" parent="props/buildings/store/store_props" instance=ExtResource("27_85vky")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.28316, 0, 6.92868)
+
+[node name="produce" type="Node3D" parent="props/buildings/store"]
+
+[node name="lettuce" type="MeshInstance3D" parent="props/buildings/store/produce"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.8071, 0.927097, 11.5141)
+material_override = SubResource("StandardMaterial3D_lpvgr")
+mesh = SubResource("SphereMesh_trrrf")
+
+[node name="lettuce2" type="MeshInstance3D" parent="props/buildings/store/produce"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.7509, 0.927097, 11.8897)
+material_override = SubResource("StandardMaterial3D_lpvgr")
+mesh = SubResource("SphereMesh_trrrf")
+
+[node name="lettuce3" type="MeshInstance3D" parent="props/buildings/store/produce"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.901, 1.00191, 12.159)
+material_override = SubResource("StandardMaterial3D_lpvgr")
+mesh = SubResource("SphereMesh_trrrf")
+
+[node name="lettuce4" type="MeshInstance3D" parent="props/buildings/store/produce"]
+transform = Transform3D(0.818765, 0, 0, 0, 0.985254, -0.0921568, 0, 0.100739, 0.90132, 33.4904, 0.860939, 11.5455)
+material_override = SubResource("StandardMaterial3D_3x1bq")
+mesh = SubResource("SphereMesh_trrrf")
+
+[node name="lettuce5" type="MeshInstance3D" parent="props/buildings/store/produce"]
+transform = Transform3D(0.818765, 0, 0, 0, 0.985254, -0.0921568, 0, 0.100739, 0.90132, 33.4444, 0.809591, 11.8839)
+material_override = SubResource("StandardMaterial3D_3x1bq")
+mesh = SubResource("SphereMesh_trrrf")
+
+[node name="lettuce6" type="MeshInstance3D" parent="props/buildings/store/produce"]
+transform = Transform3D(0.818765, 0, 0, 0, 0.985254, -0.0921568, 0, 0.100739, 0.90132, 33.4792, 0.816669, 12.2075)
+material_override = SubResource("StandardMaterial3D_3x1bq")
+mesh = SubResource("SphereMesh_trrrf")
+
+[node name="lettuce7" type="MeshInstance3D" parent="props/buildings/store/produce"]
+transform = Transform3D(0.802016, -0.0202718, -0.181374, 1.48215e-09, 0.985254, -0.0921568, 0.164762, 0.098678, 0.882883, 33.1207, 0.844265, 12.207)
+material_override = SubResource("StandardMaterial3D_fuuma")
+mesh = SubResource("SphereMesh_vuyru")
+
+[node name="lettuce8" type="MeshInstance3D" parent="props/buildings/store/produce"]
+transform = Transform3D(0.802016, -0.0202718, -0.181374, 1.48215e-09, 0.985254, -0.0921568, 0.164762, 0.098678, 0.882883, 33.2384, 0.844265, 11.6341)
+material_override = SubResource("StandardMaterial3D_fuuma")
+mesh = SubResource("SphereMesh_vuyru")
+
+[node name="lettuce9" type="MeshInstance3D" parent="props/buildings/store/produce"]
+transform = Transform3D(0.802016, -0.0202718, -0.181374, 1.48215e-09, 0.985254, -0.0921568, 0.164762, 0.098678, 0.882883, 33.1043, 0.844265, 11.8447)
+material_override = SubResource("StandardMaterial3D_fuuma")
+mesh = SubResource("SphereMesh_vuyru")
 
 [node name="graveyard" type="Node3D" parent="props/buildings"]
 
