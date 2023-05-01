@@ -57,6 +57,9 @@ func _physics_process(delta):
 	handle_locations()
 	handle_movement(delta)
 
+func _unhandled_input(event):
+	handle_interactions(event)
+
 func handle_name_label():
 	var players = GameInfo.sroot.get_child(0).players_info
 	for player in players:
@@ -222,5 +225,9 @@ func _on_area_3d_area_exited(area):
 		area.get_parent().highlight(false)
 	overlapped_object = null
 
-		
-	
+func handle_interactions(_event):
+	if Input.is_action_pressed("interaction") and overlapped_object != null:
+		if overlapped_object.is_in_group("player"):
+			return
+		overlapped_object.interact(self)
+		network_authority = false

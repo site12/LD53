@@ -1,7 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://dj821qbxpfpt0"]
+[gd_scene load_steps=13 format=3]
 
 [ext_resource type="PackedScene" uid="uid://c26odwf06rhyp" path="res://tasks/task.tscn" id="1_0up0c"]
-[ext_resource type="Script" path="res://task.gd" id="2_bqm8f"]
+[ext_resource type="Script" path="res://tasks/plug_leak/task.gd" id="2_bqm8f"]
 [ext_resource type="Texture2D" uid="uid://bbkyomrph52ok" path="res://textures/MetalBrown.png" id="3_luj81"]
 [ext_resource type="Texture2D" uid="uid://d0mh4xak023ja" path="res://textures/Metal.png" id="4_pnf52"]
 [ext_resource type="Texture2D" uid="uid://b5pw85yv3csv8" path="res://textures/Wood_11-128x128.png" id="5_do34k"]

@@ -64,7 +64,7 @@ size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="screen/MarginContainer/screen/menu/left"]
 layout_mode = 2
-text = "Westmogus"
+text = "Vultures at Dawn"
 label_settings = SubResource("LabelSettings_cmv2w")
 horizontal_alignment = 1
 vertical_alignment = 1

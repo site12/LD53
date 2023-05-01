@@ -6,6 +6,10 @@ var sussy = false
 #player peer id, player name
 @export var players_info = []
 
+@export var peer_ids = []
+
+@export var game_begun = false
+
 var player_scene = preload("res://characters/player/player.tscn")
 
 var players:Array = []
@@ -26,27 +30,56 @@ var tasks = [
 
 var local_tasks = []
 
+@export var num_tasks = 0
+@export var completed_tasks = 0
+
 func _ready():
 	self.name = sname
 	%session_synchronizer.set_visibility_for(1,true)
+	await get_tree().create_timer(5).timeout
+	
+
+func _process(_delta):
+	
+	if game_begun:
+		%progress_t.value = completed_tasks
+		%progress_m.value = completed_tasks
+	
+	for x in %players.get_children():
+		var id:int = x.name.to_int()
+		if peer_ids.find(id) == -1:
+			players.erase(x)
+			x.queue_free()
+			
 
 func add_player_to_session(player_info:Array):
+	if game_begun:
+		return
 	%session_synchronizer.set_visibility_for(player_info[0],true)
 	if players_info.size() == 0:
 		host_id = player_info[0]
 		players_info.push_back(player_info)
+		peer_ids.push_back(player_info[0])
 	else:
 		players_info.push_back(player_info)
+		peer_ids.push_back(player_info[0])
 		
 	
 	await get_tree().create_timer(1).timeout
 	server_spawn_player(player_info)
+	
+	
 	
 @rpc("any_peer")
 func server_start_game():
 	start_game()
 	randomize()
 	var amogus = randi_range(0,players_info.size()-1)
+	
+	num_tasks = players.size() * 5
+	%progress_t.max_value = num_tasks
+	%progress_m.max_value = num_tasks
+	
 	#print(amogus)
 	var p = 0
 	for player in players_info:
@@ -60,14 +93,14 @@ func server_start_game():
 		p +=1
 
 @rpc
-func assign_tasks(peer_id,num_tasks):
+func assign_tasks(peer_id,_num_tasks):
 	if str(peer_id) == str(GameInfo.peer_id):
 		randomize()
 		var list = tasks
 		list.shuffle()
-		local_tasks.resize(num_tasks)
+		local_tasks.resize(_num_tasks)
 		var text = "TASK LIST: \n"
-		for x in num_tasks:
+		for x in _num_tasks:
 			local_tasks[x] = list[x]
 			text += local_tasks[x] +"\n"
 		%task_list.text = text
@@ -97,8 +130,10 @@ func client_start_game():
 	start_game()
 
 func start_game():
+	game_begun = true
 	%blocker1.queue_free()
 	%blocker2.queue_free()
+	
 
 func server_spawn_player(player_info):
 	spawn_player(player_info)
@@ -157,3 +192,9 @@ func _on_help_close_button_up():
 
 func _on_begin_game_button_up():
 	rpc_id(1,"server_start_game")
+
+@rpc("any_peer")
+func server_complete_task():
+	completed_tasks +=1
+	
+	

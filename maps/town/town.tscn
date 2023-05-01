@@ -22,12 +22,12 @@
 [ext_resource type="PackedScene" uid="uid://ygg0l6w3bxut" path="res://props/town/buildings/saloon/stool.tscn" id="17_snlf4"]
 [ext_resource type="PackedScene" uid="uid://c4n1flges86fi" path="res://tasks/clean_bar_table/bar_clean_table.tscn" id="18_vtcke"]
 [ext_resource type="PackedScene" uid="uid://cvfaj4wnnoqx2" path="res://tasks/take_a_shot/bar_take_a_shot.tscn" id="19_enkwr"]
-[ext_resource type="PackedScene" uid="uid://dj821qbxpfpt0" path="res://tasks/plug_leak/Water Tower - Plug Leak.tscn" id="19_lbfif"]
+[ext_resource type="PackedScene" path="res://tasks/plug_leak/Water Tower - Plug Leak.tscn" id="19_lbfif"]
 [ext_resource type="PackedScene" uid="uid://cwgvdd13728jc" path="res://tasks/stamp_form/bank___stamp_form.tscn" id="23_8m2cl"]
 [ext_resource type="PackedScene" uid="uid://tok53qkqrv05" path="res://props/town/buildings/bank/bank_counter.tscn" id="24_tthvp"]
 [ext_resource type="PackedScene" uid="uid://ck5u0pb02brc0" path="res://tasks/wash_produce/general_store___wash_produce.tscn" id="27_85vky"]
 [ext_resource type="PackedScene" uid="uid://bgf8axvl5v6x5" path="res://tasks/empty_register/general_store___empty_register.tscn" id="27_sm6vd"]
-[ext_resource type="PackedScene" uid="uid://milftmdip5re" path="res://tasks/f_to_respect/graveyard___pay_respects.tscn" id="27_v63jd"]
+[ext_resource type="PackedScene" path="res://tasks/f_to_respect/graveyard___pay_respects.tscn" id="27_v63jd"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_wqwgs"]
 size = Vector2(80, 80)

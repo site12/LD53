@@ -1,7 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://milftmdip5re"]
+[gd_scene load_steps=8 format=3]
 
 [ext_resource type="PackedScene" uid="uid://c26odwf06rhyp" path="res://tasks/task.tscn" id="1_nl7dk"]
-[ext_resource type="Script" path="res://Graveyard - Pay Respects.gd" id="2_7213r"]
+[ext_resource type="Script" path="res://tasks/f_to_respect/Graveyard - Pay Respects.gd" id="2_7213r"]
 [ext_resource type="Texture2D" uid="uid://br6is8hqafr8c" path="res://textures/Dirt_06-128x128.png" id="3_st26y"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t5o05"]

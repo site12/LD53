@@ -13,6 +13,24 @@ properties/1/sync = true
 properties/2/path = NodePath(".:players_info")
 properties/2/spawn = true
 properties/2/sync = true
+properties/3/path = NodePath(".:game_begun")
+properties/3/spawn = true
+properties/3/sync = true
+properties/4/path = NodePath(".:num_tasks")
+properties/4/spawn = true
+properties/4/sync = true
+properties/5/path = NodePath(".:completed_tasks")
+properties/5/spawn = true
+properties/5/sync = true
+properties/6/path = NodePath("ui/during_game/townsfolk_hud/HBoxContainer/left/progress_t:max_value")
+properties/6/spawn = true
+properties/6/sync = true
+properties/7/path = NodePath("ui/during_game/monster_hud/HBoxContainer/left/progress_m:max_value")
+properties/7/spawn = true
+properties/7/sync = true
+properties/8/path = NodePath(".:peer_ids")
+properties/8/spawn = true
+properties/8/sync = true
 
 [sub_resource type="Gradient" id="Gradient_305af"]
 offsets = PackedFloat32Array(0.137427, 1)
@@ -64,7 +82,9 @@ outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_dfo5j"]
-font_size = 20
+font_size = 18
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ytvug"]
 font_size = 45
@@ -470,14 +490,15 @@ custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="ProgressBar" type="ProgressBar" parent="ui/during_game/townsfolk_hud/HBoxContainer/left"]
+[node name="progress_t" type="ProgressBar" parent="ui/during_game/townsfolk_hud/HBoxContainer/left"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 25)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_d3gh5")
 theme_override_styles/fill = SubResource("StyleBoxFlat_gt3as")
 show_percentage = false
 
-[node name="Label" type="Label" parent="ui/during_game/townsfolk_hud/HBoxContainer/left/ProgressBar"]
+[node name="Label" type="Label" parent="ui/during_game/townsfolk_hud/HBoxContainer/left/progress_t"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -554,14 +575,15 @@ custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="ProgressBar" type="ProgressBar" parent="ui/during_game/monster_hud/HBoxContainer/left"]
+[node name="progress_m" type="ProgressBar" parent="ui/during_game/monster_hud/HBoxContainer/left"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 25)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_d3gh5")
 theme_override_styles/fill = SubResource("StyleBoxFlat_gt3as")
 show_percentage = false
 
-[node name="Label" type="Label" parent="ui/during_game/monster_hud/HBoxContainer/left/ProgressBar"]
+[node name="Label" type="Label" parent="ui/during_game/monster_hud/HBoxContainer/left/progress_m"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -595,7 +617,7 @@ theme_override_constants/margin_bottom = 5
 custom_minimum_size = Vector2(300, 200)
 layout_mode = 2
 text = "TASK LIST:
-Monster - Murder Everyone"
+Vulture - Murder Everyone"
 
 [node name="spacer2" type="Label" parent="ui/during_game/monster_hud/HBoxContainer/left"]
 custom_minimum_size = Vector2(0, 350)
@@ -653,17 +675,18 @@ layout_mode = 2
 size_flags_horizontal = 4
 
 [node name="Label" type="Label" parent="ui/help/bg/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-text = "Welcome to Westmogus!"
+text = "Welcome to Vultures at Dawn!"
 label_settings = SubResource("LabelSettings_jaje4")
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="ui/help/bg/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "HOW TO PLAY:
-Once the host begins the game, someone will be randomly be chosen to be a monster masquerading as a human! The monster's goal is to stealthily murder all of the townsfolk, and the townsfolk's goal is to complete their tasks and keep an eye out for any suspicious behavior, or bodies! If a townsfolk player thinks they know who the monster is, they can report to the sheriff for a chance to duel the suspect!
+Once the host begins the game, someone will be randomly be chosen to be the Vulture; a monster masquerading as a human! The vulture's goal is to stealthily murder all of the townsfolk, and the townsfolk's goal is to complete their tasks and keep an eye out for any suspicious behavior, or bodies! If a townsfolk player thinks they know who the vulture is, they can report to the sheriff for a chance to duel the suspect!
 
-In order for the monster to win, they will have to eliminate all of the townsfolk. In order for the townsfolk to win, they will need to complete all their tasks, or successfully eliminate the monster via a duel."
+In order for the vulture to win, they will have to eliminate all of the townsfolk. In order for the townsfolk to win, they will need to complete all their tasks, or successfully eliminate the vulture by dueling them."
 label_settings = SubResource("LabelSettings_dfo5j")
 autowrap_mode = 2
 
@@ -721,7 +744,7 @@ alignment = 1
 
 [node name="Label" type="Label" parent="ui/monster/bg/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "You are the Monster."
+text = "You are the Vulture."
 label_settings = SubResource("LabelSettings_ytvug")
 horizontal_alignment = 1
 
