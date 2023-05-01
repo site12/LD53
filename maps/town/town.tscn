@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://cbjgv0p40ws4s"]
+[gd_scene load_steps=67 format=3 uid="uid://cbjgv0p40ws4s"]
 
 [ext_resource type="Texture2D" uid="uid://b5pw85yv3csv8" path="res://textures/Wood_11-128x128.png" id="2_pkbc3"]
 [ext_resource type="PackedScene" uid="uid://cyw6ov74l46k8" path="res://props/town/misc/fence_join.tscn" id="4_caq4h"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://badmjf1vm0fk6" path="res://tasks/stoke_fire/hotel_stoke_fire.tscn" id="14_sr4au"]
 [ext_resource type="PackedScene" uid="uid://dmffcyb31w2oc" path="res://tasks/train_station/train_station___prepare_station_for_arrival.tscn" id="15_7cmy4"]
 [ext_resource type="PackedScene" uid="uid://bsx3kcubxflky" path="res://tasks/sign_guestbook/Hotel - Sign Guestbook.tscn" id="15_c608v"]
+[ext_resource type="PackedScene" uid="uid://ljljkmxu8fhu" path="res://characters/sheriff.tscn" id="15_qfoa4"]
 [ext_resource type="PackedScene" uid="uid://ygg0l6w3bxut" path="res://props/town/buildings/saloon/stool.tscn" id="17_snlf4"]
 [ext_resource type="PackedScene" uid="uid://c4n1flges86fi" path="res://tasks/clean_bar_table/bar_clean_table.tscn" id="18_vtcke"]
 [ext_resource type="PackedScene" uid="uid://cvfaj4wnnoqx2" path="res://tasks/take_a_shot/bar_take_a_shot.tscn" id="19_enkwr"]
@@ -783,6 +784,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.3656, 0, 43.9237)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="props/buildings/train_station/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.8693, 1.46378, 46.0148)
 shape = SubResource("BoxShape3D_eb8ra")
+
+[node name="sheriff" parent="props/buildings/train_station" groups=["sheriff"] instance=ExtResource("15_qfoa4")]
+unique_name_in_owner = true
 
 [node name="saloon" type="Node3D" parent="props/buildings"]
 

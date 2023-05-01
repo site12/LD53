@@ -71,6 +71,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 placeholder_text = "PLAYER NAME"
 alignment = 1
+max_length = 15
 
 [node name="HOST" type="Button" parent="MarginContainer/screen/menu/left"]
 unique_name_in_owner = true
@@ -97,6 +98,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 placeholder_text = "4 DIGIT ROOM CODE"
 alignment = 1
+max_length = 4
 
 [node name="JOIN" type="Button" parent="MarginContainer/screen/menu/left"]
 unique_name_in_owner = true

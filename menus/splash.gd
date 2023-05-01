@@ -28,3 +28,15 @@ func _connected():
 	visible = false
 	get_parent().get_node("main_menu").visible = true
 	
+
+
+func _on_credits_button_up():
+	%credits.visible = true
+	$screen/Label.visible = false
+	$screen/MarginContainer.visible = false
+
+
+func _on_button_button_up():
+	%credits.visible = false
+	$screen/Label.visible = true
+	$screen/MarginContainer.visible = true

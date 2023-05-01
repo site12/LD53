@@ -6,6 +6,8 @@ const JUMP_VELOCITY = 4.5
 
 var sussy = false
 
+@export var dead = false
+
 @export var skin_num = 0
 
 @onready var animtree = $anims/AnimationTree
@@ -52,6 +54,10 @@ func _process(_delta):
 	move_and_slide()
 	%camera_pos.position = position
 	%name_pos.position = position
+	
+	#if not dead and player_state == PlayerState.DEAD:
+		#dead = true
+		#death()
 
 func _physics_process(delta):
 	handle_state()
@@ -184,15 +190,32 @@ func highlight(val:bool):
 			x.material_overlay = null
 			%cowboyhat.material_overlay = null
 
-@rpc("any_peer")
-func death():
-	
-	%charmesh.rotation.x = deg_to_rad(90)
-	var ded = preload("res://characters/player/materials/kill_highlight/ded.tres")
-	for x in bodymeshes:
-		x.material_overlay = ded
+@rpc
+func death(peer_id):
+	var dead_body = preload("res://characters/dead_body.tscn")
+	if peer_id == GameInfo.peer_id:
+		#print("killing player locally")
 		
-	%cowboyhat.material_overlay = ded
+		#network_authority = false
+		var ded = preload("res://characters/player/materials/kill_highlight/ded.tres")
+		for y in bodymeshes:
+			y.material_overlay = ded
+		get_node("%cowboyhat").material_overlay = ded
+		var sesh = GameInfo.sroot.get_child(0)
+		var body = dead_body.instantiate()
+		sesh.add_child(body)
+		body.global_position = global_position
+	else:
+		var sesh = GameInfo.sroot.get_child(0)
+		for x in sesh.players:
+			if x.name.to_int() == peer_id:
+				x.get_node("%charmesh").visible = false
+				x.get_node("%name_label").visible = false
+				var body = dead_body.instantiate()
+				sesh.add_child(body)
+				body.global_position = x.global_position
+	
+	
 	
 
 func _on_area_3d_area_entered(area):
@@ -217,6 +240,10 @@ func _on_area_3d_area_entered(area):
 			if area.get_parent().name == x:
 				overlapped_object = area.get_parent()
 				overlapped_object.highlight(true)
+				
+	if area.get_parent().is_in_group("sheriff") and not dead:
+		overlapped_object = area.get_parent()
+		overlapped_object.highlight(true)
 
 func _on_area_3d_area_exited(area):
 	if not network_authority:
@@ -231,13 +258,20 @@ func _on_area_3d_area_exited(area):
 	
 	if area.get_parent().is_in_group("task") and not sus:
 		area.get_parent().highlight(false)
+	
+	if area.get_parent().is_in_group("sheriff") and not dead:
+		area.get_parent().highlight(false)
+	
 	overlapped_object = null
 
 func handle_interactions(_event):
 	sussy = GameInfo.sroot.get_child(0).sussy
 	if Input.is_action_pressed("interaction") and overlapped_object != null:
-		if overlapped_object.is_in_group("player") and sussy:
+		if overlapped_object.is_in_group("player") and sussy and !overlapped_object.dead:
 			GameInfo.sroot.get_child(0).rpc_id(1,"server_kill_player",overlapped_object.name)
 		elif not sussy:
+			overlapped_object.interact(self)
+			network_authority = false
+		if overlapped_object.is_in_group("sheriff") and not dead:
 			overlapped_object.interact(self)
 			network_authority = false

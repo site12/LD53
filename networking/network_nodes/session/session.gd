@@ -14,6 +14,8 @@ var player_scene = preload("res://characters/player/player.tscn")
 
 var players:Array = []
 
+var winner_of_duel = -1
+
 var tasks = [
 	"Church - Pray",
 	"Bank - Stamp Form",
@@ -34,6 +36,7 @@ var local_tasks = []
 @export var completed_tasks = 0
 
 func _ready():
+	%duelcam.current = false
 	self.name = sname
 	%session_synchronizer.set_visibility_for(1,true)
 	await get_tree().create_timer(5).timeout
@@ -109,19 +112,21 @@ func assign_tasks(peer_id,_num_tasks):
 func update_task_list():
 	%task_list.text = ""
 	var text = "TASK LIST: \n"
-	for x in num_tasks:
+	#print(local_tasks)
+	for x in local_tasks.size():
 		text += local_tasks[x] +"\n"
 	%task_list.text = text
 
 @rpc("any_peer")
 func server_kill_player(peer_id):
+	#print("attempting to kill player with ID "+str(peer_id))
 	for x in players:
-		if x.name == str(peer_id):
-			x.player_state = 3
-			x.get_node("%charmesh").rotation.x = deg_to_rad(90)
-			for y in peer_ids:
-				x.get_node("player_synchronizer").set_visibility_for(y,false)
-			x.rpc_id(peer_id.to_int(),"death")
+		if x.name == str(peer_id) and x.dead == false:
+			#print("killing player with ID "+str(peer_id))
+			x.dead = true
+
+			for z in players:
+				z.rpc_id(z.name.to_int(),"death",peer_id.to_int())
 
 @rpc
 func assign_role(is_sus):
@@ -151,6 +156,7 @@ func start_game():
 	game_begun = true
 	%blocker1.queue_free()
 	%blocker2.queue_free()
+	populate_challenge_menu()
 	
 
 func server_spawn_player(player_info):
@@ -216,3 +222,116 @@ func server_complete_task():
 	completed_tasks +=1
 	
 	
+func populate_challenge_menu():
+	var p_button = preload("res://networking/network_nodes/session/p_button.tscn")
+	for x in players_info:
+		if x[0] != GameInfo.peer_id:
+			var p = p_button.instantiate()
+			p.name = str(x[0])
+			p.text = x[1]
+			p.connect("button_up",_challenge_player.bind(p.name.to_int()))
+			get_node("%p_button_spot").add_child(p)
+
+
+func _on_back_button_up():
+	%challenge.visible = false
+	%town.get_node("%sheriff").highlight(false)
+	for x in players:
+		if x.name.to_int() == GameInfo.peer_id:
+			x.network_authority = true
+	
+
+func _challenge_player(_peer_id):
+	var challenger = GameInfo.peer_id
+	var accused = _peer_id
+	
+	rpc_id(1,"server_start_duel",challenger,accused)
+
+@rpc("any_peer")
+func server_start_duel(challenger,accused):
+	winner_of_duel = -1
+	for x in players_info:
+		rpc_id(x[0],"client_start_duel",challenger,accused)
+	await get_tree().create_timer(5).timeout
+	for x in players_info:
+		rpc_id(x[0],"advance_duel_1")
+	await get_tree().create_timer(3).timeout
+	for x in players_info:
+		rpc_id(x[0],"advance_duel_2")
+	await get_tree().create_timer(2).timeout
+	for x in players_info:
+		rpc_id(x[0],"advance_duel_3")
+	await get_tree().create_timer(2).timeout
+	for x in players_info:
+		rpc_id(x[0],"advance_duel_4")
+	await get_tree().create_timer(2).timeout
+	for x in players_info:
+		rpc_id(x[0],"advance_duel_5")
+	
+@rpc
+func client_start_duel(challenger,accused):
+	%duel_status.text = "Challenges"
+	%duelcam.current = true
+	%duel_viewports.visible = true
+	%duel_ui.visible = true
+	if challenger == GameInfo.peer_id:
+		%challenger_ui.visible = true
+	if accused == GameInfo.peer_id:
+		%accused_ui.visible = true
+		
+	for x in players_info:
+		if challenger == x[0]:
+			%ch_label.text = x[1]
+		if accused == x[0]:
+			%ac_label.text = x[1]
+
+@rpc
+func advance_duel_1():
+	%duel_status.text = "Get Ready!"
+@rpc
+func advance_duel_2():
+	%duel_status.text = "3..."
+@rpc
+func advance_duel_3():
+	%duel_status.text = "2..."
+@rpc
+func advance_duel_4():
+	%duel_status.text = "1..."
+
+@rpc
+func advance_duel_5():
+	%duel_status.text = "SHOOT!"
+	%challenger_shoot.disabled = false
+	%accused_shoot.disabled = false
+	
+
+@rpc("any_peer")
+func server_receive_winner(winner):
+	if winner_of_duel == -1:
+		winner_of_duel = winner
+		for x in players_info:
+			rpc_id(x[0],"client_receive_winner",winner_of_duel)
+
+@rpc
+func client_receive_winner(winner):
+	if %end.visible == false:
+		%end.visible = true
+	await get_tree().create_timer(2).timeout
+	var winner_name = ""
+	for x in players_info:
+		if x[0] == winner:
+			winner_name = x[1]
+	%winner_status.text = winner_name + " has won the duel."
+
+func end_game(_did_sussy_win):
+	pass
+
+
+func _on_challenger_shoot_button_up():
+	%end.visible = true
+	rpc_id(1,"server_receive_winner",GameInfo.peer_id)
+
+
+func _on_accused_shoot_button_up():
+	%end.visible = true
+	rpc_id(1,"server_receive_winner",GameInfo.peer_id)
