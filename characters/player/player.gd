@@ -4,7 +4,7 @@ class_name Player extends CharacterBody3D
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
-var sussy = false
+@export var sussy = false
 
 @export var dead = false
 
@@ -195,7 +195,7 @@ func death(peer_id):
 	var dead_body = preload("res://characters/dead_body.tscn")
 	if peer_id == GameInfo.peer_id:
 		#print("killing player locally")
-		
+		dead = true
 		#network_authority = false
 		var ded = preload("res://characters/player/materials/kill_highlight/ded.tres")
 		for y in bodymeshes:
@@ -213,6 +213,7 @@ func death(peer_id):
 				x.get_node("%name_label").visible = false
 				var body = dead_body.instantiate()
 				sesh.add_child(body)
+				x.dead = true
 				body.global_position = x.global_position
 	
 	

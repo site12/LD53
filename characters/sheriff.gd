@@ -15,5 +15,8 @@ func highlight(val):
 
 
 func interact(_player):
+	if _player.dead:
+		return
+	GameInfo.sroot.get_child(0).populate_challenge_menu()
 	GameInfo.sroot.get_child(0).get_node("%challenge").visible = true
 	

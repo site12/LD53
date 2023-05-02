@@ -560,6 +560,9 @@ properties/4/sync = true
 properties/5/path = NodePath(".:dead")
 properties/5/spawn = true
 properties/5/sync = true
+properties/6/path = NodePath(".:sussy")
+properties/6/spawn = true
+properties/6/sync = true
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_5ynk5"]
 height = 0.34707
@@ -1212,7 +1215,7 @@ mesh = SubResource("ArrayMesh_u58th")
 skin = SubResource("Skin_84lih")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="charmesh/RootNode/Armature/Skeleton3D"]
-transform = Transform3D(0.9928, -0.0729858, -0.0949758, 0.0551807, 0.982452, -0.178167, 0.106313, 0.171643, 0.979406, 0.0001316, 0.0418987, 0.000325397)
+transform = Transform3D(0.9928, -0.0729857, -0.0949758, 0.0551807, 0.982452, -0.178167, 0.106313, 0.171643, 0.979406, 0.000131601, 0.0418987, 0.000325397)
 bone_name = "mixamorig_Head"
 bone_idx = 5
 

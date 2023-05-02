@@ -2,7 +2,7 @@ class_name Session extends Node
 
 @export var sname = ""
 @export var host_id = 0
-var sussy = false
+@export var sussy = false
 #player peer id, player name
 @export var players_info = []
 
@@ -10,11 +10,17 @@ var sussy = false
 
 @export var game_begun = false
 
+@export var game_over = false
+
+@export var killed_players = 0
+
 var player_scene = preload("res://characters/player/player.tscn")
 
 var players:Array = []
 
 var winner_of_duel = -1
+var challenge_id = -1
+var accused_id = -1
 
 var tasks = [
 	"Church - Pray",
@@ -48,6 +54,23 @@ func _process(_delta):
 		%progress_t.value = completed_tasks
 		%progress_m.value = completed_tasks
 		
+	if game_begun and killed_players == players.size()-1 && winner_of_duel == -1 and !game_over:
+		game_over = true
+		%end_game.visible = true
+		%winner_reg_status.text = "The vulture has killed all players."
+		await get_tree().create_timer(10).timeout
+		%winner_reg_status.text = "Better luck next time townsfolk!"
+		await get_tree().create_timer(3).timeout
+		end_game()
+	
+	if game_begun and winner_of_duel == -1 and !game_over and completed_tasks == num_tasks:
+		game_over = true
+		%end_game.visible = true
+		%winner_reg_status.text = "The townsfolk have completed all tasks."
+		await get_tree().create_timer(5).timeout
+		%winner_reg_status.text = "Better luck next time vulture!"
+		await get_tree().create_timer(3).timeout
+		end_game()
 	
 	for x in %players.get_children():
 		var id:int = x.name.to_int()
@@ -119,6 +142,7 @@ func update_task_list():
 
 @rpc("any_peer")
 func server_kill_player(peer_id):
+	killed_players +=1
 	#print("attempting to kill player with ID "+str(peer_id))
 	for x in players:
 		if x.name == str(peer_id) and x.dead == false:
@@ -135,6 +159,9 @@ func assign_role(is_sus):
 		%pre_game.visible = false
 		sussy = true
 		%AnimationPlayer.play("fade_assign_monster")
+		for x in players:
+			if x.name.to_int() == GameInfo.peer_id:
+				x.sussy = true
 	else:
 		%townsfolk.visible = true
 		%pre_game.visible = false
@@ -156,7 +183,7 @@ func start_game():
 	game_begun = true
 	%blocker1.queue_free()
 	%blocker2.queue_free()
-	populate_challenge_menu()
+	#populate_challenge_menu()
 	
 
 func server_spawn_player(player_info):
@@ -224,14 +251,22 @@ func server_complete_task():
 	
 func populate_challenge_menu():
 	var p_button = preload("res://networking/network_nodes/session/p_button.tscn")
+	for x in get_node("%p_button_spot").get_children():
+		x.queue_free()
+	var z = 0
 	for x in players_info:
+		
 		if x[0] != GameInfo.peer_id:
-			var p = p_button.instantiate()
-			p.name = str(x[0])
-			p.text = x[1]
-			p.connect("button_up",_challenge_player.bind(p.name.to_int()))
-			get_node("%p_button_spot").add_child(p)
-
+			for pl in players:
+				if pl.name.to_int() == x[0]:
+					var p = p_button.instantiate()
+					p.name = str(x[0])
+					p.text = x[1]
+					if pl.dead:
+						p.disabled = true
+					p.connect("button_up",_challenge_player.bind(p.name.to_int()))
+					get_node("%p_button_spot").add_child(p)
+		z+=1
 
 func _on_back_button_up():
 	%challenge.visible = false
@@ -242,6 +277,7 @@ func _on_back_button_up():
 	
 
 func _challenge_player(_peer_id):
+	%challenge.visible = false
 	var challenger = GameInfo.peer_id
 	var accused = _peer_id
 	
@@ -250,6 +286,10 @@ func _challenge_player(_peer_id):
 @rpc("any_peer")
 func server_start_duel(challenger,accused):
 	winner_of_duel = -1
+	challenge_id = -1
+	accused_id = -1
+	challenge_id = challenger
+	accused_id = accused
 	for x in players_info:
 		rpc_id(x[0],"client_start_duel",challenger,accused)
 	await get_tree().create_timer(5).timeout
@@ -309,11 +349,33 @@ func advance_duel_5():
 func server_receive_winner(winner):
 	if winner_of_duel == -1:
 		winner_of_duel = winner
+		
+		var loser = -1
+		
+		if challenge_id == winner:
+			winner_of_duel = challenge_id
+			loser = accused_id
+		elif accused_id == winner:
+			winner_of_duel = accused_id
+			loser = challenge_id
+		
+		var sussybaka = false
+		
+		for x in players:
+			#print(str(x.name.to_int())+" " +str(loser))
+			if x.name.to_int() == loser:
+				print("testing sussyness")
+				if x.sussy:
+					print("imposter is sus")
+					sussybaka = x.sussy
+		
 		for x in players_info:
-			rpc_id(x[0],"client_receive_winner",winner_of_duel)
+			rpc_id(x[0],"client_receive_winner",winner_of_duel,loser,sussybaka)
+		
+		server_kill_player(str(loser))
 
 @rpc
-func client_receive_winner(winner):
+func client_receive_winner(winner,loser,sussy_status):
 	if %end.visible == false:
 		%end.visible = true
 	await get_tree().create_timer(2).timeout
@@ -322,10 +384,38 @@ func client_receive_winner(winner):
 		if x[0] == winner:
 			winner_name = x[1]
 	%winner_status.text = winner_name + " has won the duel."
+	await get_tree().create_timer(2).timeout
+	if sussy_status:
+		%game_status.text = "They have killed the vulture."
+		await get_tree().create_timer(2).timeout
+		%winner_status.text = "Congrats townsfolk!"
+		%game_status.text = ""
+		await get_tree().create_timer(2).timeout
+		end_game()
+	else:
+		%game_status.text = "They have not killed the vulture."
+		await get_tree().create_timer(2).timeout
+		if killed_players == players.size()-1 and not game_over:
+#			%winner_status.text = ""
+#			%game_status.text = "The vulture has killed all players."
+#			await get_tree().create_timer(3).timeout
+#			%game_status.text = ""
+#			%winner_status.text = "Better luck next time townsfolk!"
+#			await get_tree().create_timer(3).timeout
+			%duelcam.current = false
+			%duel_viewports.visible = false
+			%duel_ui.visible = false
+			#end_game()
+		%duel_status.text = "Challenges"
+		%duelcam.current = false
+		%duel_viewports.visible = false
+		%duel_ui.visible = false
+		
+		
 
-func end_game(_did_sussy_win):
-	pass
-
+func end_game():
+	get_tree().change_scene_to_file("res://characters/player/meshes and textures/world.tscn")
+	self.queue_free()
 
 func _on_challenger_shoot_button_up():
 	%end.visible = true

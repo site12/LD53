@@ -36,6 +36,9 @@ properties/7/sync = true
 properties/8/path = NodePath(".:peer_ids")
 properties/8/spawn = true
 properties/8/sync = true
+properties/9/path = NodePath(".:killed_players")
+properties/9/spawn = true
+properties/9/sync = true
 
 [sub_resource type="Gradient" id="Gradient_305af"]
 offsets = PackedFloat32Array(0.137427, 1)
@@ -369,13 +372,13 @@ _data = {
 "fade_assign_townsfolk": SubResource("Animation_0n5fj")
 }
 
-[sub_resource type="LabelSettings" id="LabelSettings_h68f2"]
-font = ExtResource("3_y4ryh")
-font_size = 35
-
 [sub_resource type="LabelSettings" id="LabelSettings_0jjue"]
 font = ExtResource("3_y4ryh")
 font_size = 45
+
+[sub_resource type="LabelSettings" id="LabelSettings_h68f2"]
+font = ExtResource("3_y4ryh")
+font_size = 35
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qpcus"]
 albedo_color = Color(0.427451, 0.745098, 0.898039, 1)
@@ -1579,6 +1582,63 @@ libraries = {
 "": SubResource("AnimationLibrary_6x8fc")
 }
 
+[node name="end_game" type="Control" parent="ui"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="ui/end_game"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="winner_reg_status" type="Label" parent="ui/end_game/ColorRect"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(275, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -137.5
+offset_top = -29.0
+offset_right = 137.5
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_0jjue")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="game_reg_status" type="Label" parent="ui/end_game/ColorRect"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(275, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -137.5
+offset_top = 40.0
+offset_right = 137.5
+offset_bottom = 98.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_0jjue")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="duel" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4561, 0, -9.65263)
 
@@ -1780,6 +1840,25 @@ offset_left = -137.5
 offset_top = -29.0
 offset_right = 137.5
 offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_0jjue")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="game_status" type="Label" parent="duel/duel_ui/end/ColorRect"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(275, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -137.5
+offset_top = 40.0
+offset_right = 137.5
+offset_bottom = 98.0
 grow_horizontal = 2
 grow_vertical = 2
 label_settings = SubResource("LabelSettings_0jjue")
@@ -2278,7 +2357,7 @@ mesh = SubResource("ArrayMesh_kjo74")
 skin = SubResource("Skin_fx74b")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="duel/challenger/RootNode/Skeleton3D"]
-transform = Transform3D(0.997751, -0.0593061, 0.0312403, 0.0579409, 0.997396, 0.0429312, -0.033705, -0.0410246, 0.99859, -0.000832298, 0.0413376, -0.000218479)
+transform = Transform3D(0.997751, -0.059306, 0.0312408, 0.0579407, 0.997397, 0.0429311, -0.0337056, -0.0410244, 0.99859, -0.000832298, 0.0413377, -0.000218478)
 bone_name = "mixamorig_Head"
 bone_idx = 5
 
@@ -2770,7 +2849,7 @@ mesh = SubResource("ArrayMesh_kjo74")
 skin = SubResource("Skin_fx74b")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="duel/accused/RootNode/Skeleton3D"]
-transform = Transform3D(0.997751, -0.0593061, 0.0312403, 0.0579409, 0.997396, 0.0429312, -0.033705, -0.0410246, 0.99859, -0.000832298, 0.0413376, -0.000218479)
+transform = Transform3D(0.997751, -0.059306, 0.0312408, 0.0579407, 0.997397, 0.0429311, -0.0337056, -0.0410244, 0.99859, -0.000832298, 0.0413377, -0.000218478)
 bone_name = "mixamorig_Head"
 bone_idx = 5
 
